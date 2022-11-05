@@ -551,6 +551,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2392336046809190263, guid: 928e0e7d5c3ca4640913d94403a4fc12, type: 3}
+      propertyPath: m_Name
+      value: FrontCircleStreet
+      objectReference: {fileID: 0}
+    - target: {fileID: 8671176163340998838, guid: 928e0e7d5c3ca4640913d94403a4fc12, type: 3}
+      propertyPath: m_Name
+      value: BackCircleStreet
+      objectReference: {fileID: 0}
     - target: {fileID: 9071466521692246456, guid: 928e0e7d5c3ca4640913d94403a4fc12, type: 3}
       propertyPath: m_Name
       value: circuleStreet

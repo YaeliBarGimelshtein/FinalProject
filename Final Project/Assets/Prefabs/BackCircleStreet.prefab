@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6148102220091498632}
   m_Layer: 0
-  m_Name: BackSirculeStreet
+  m_Name: BackCircleStreet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
