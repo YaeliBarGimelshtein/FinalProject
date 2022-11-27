@@ -5,18 +5,19 @@ public class ActivateChest : MonoBehaviour {
 
 	public Transform lid, lidOpen, lidClose;	// Lid, Lid open rotation, Lid close rotation
 	public float openSpeed = 5F;				// Opening speed
-	public bool canClose;						// Can the chest be closed
-	
-	[HideInInspector]
+	public bool canClose;                       // Can the chest be closed
+    public Sword sword;
+
+    [HideInInspector]
 	public bool _open;							// Is the chest opened
 
 	void Update () {
 		if(_open){
 			ChestClicked(lidOpen.rotation);
-		}
+        }
 		else{
 			ChestClicked(lidClose.rotation);
-		}
+        }
 	}
 	
 	// Rotate the lid to the requested rotation
@@ -28,5 +29,13 @@ public class ActivateChest : MonoBehaviour {
 	
 	void OnMouseDown(){
 		if(canClose) _open = !_open; else _open = true;
+        if (_open)
+        {
+            sword.ShowSword(true);
+        }
+        else
+        {
+            sword.ShowSword(false);
+        }
 	}
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerMovementScript : MonoBehaviour
 {
     public CharacterController controller;
@@ -14,6 +15,8 @@ public class PlayerMovementScript : MonoBehaviour
 
     Vector3 velocity;
     bool isGrounded;
+ 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,4 +46,5 @@ public class PlayerMovementScript : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
+  
 }
