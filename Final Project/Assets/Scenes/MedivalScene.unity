@@ -344,7 +344,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 12, z: 10}
+  m_Size: {x: 10, y: 12, z: 13}
   m_Center: {x: -0.5, y: -5, z: 0}
 --- !u!114 &129083667
 MonoBehaviour:
@@ -1631,7 +1631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d27e04a871bed428dfd7bee20e33a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLocation: {x: 0, y: 0, z: 0}
+  player: {fileID: 1862617864}
 --- !u!1 &1051418369
 GameObject:
   m_ObjectHideFlags: 0
@@ -3225,7 +3225,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 11, z: 5}
+  m_Size: {x: 8, y: 11, z: 10}
   m_Center: {x: -0.5, y: -5, z: 0}
 --- !u!1001 &2033856783
 PrefabInstance:
@@ -3677,6 +3677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transition: {fileID: 1518439326}
   transitionTime: 1
+  player: {fileID: 1862617864}
 --- !u!1001 &1099746599188583822
 PrefabInstance:
   m_ObjectHideFlags: 0

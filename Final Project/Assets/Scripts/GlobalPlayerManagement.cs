@@ -1,26 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GlobalPlayerManagement : MonoBehaviour
 {
-    public static int playerNumberOfSowrds = 0;
+    public int playerNumberOfSowrds = 0;
     public Vector3 playerLocation;
+    public GameObject player;
 
     //singeltion
-    static GlobalPlayerManagement instance;
+    public static GlobalPlayerManagement instance;
 
     private void Awake()
     {
         if(instance == null)
         {
             instance = this;
+            //playerLocation = player.transform.position;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
+            if (SceneManager.GetActiveScene().buildIndex == 0)
+            {
+                player.transform.position = playerLocation;
+            }
         }
     }
 

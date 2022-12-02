@@ -21,6 +21,6 @@ public class InventoryUI : MonoBehaviour
 
     private string GetDisplayText()
     {
-        return "Sword count: " + GlobalPlayerManagement.playerNumberOfSowrds;
+        return "Sword count: " + GlobalPlayerManagement.instance.playerNumberOfSowrds;
     }
 }

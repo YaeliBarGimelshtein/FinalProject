@@ -514,6 +514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transition: {fileID: 801566737}
   transitionTime: 1
+  player: {fileID: 445224432}
 --- !u!1 &235523265
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,7 +1426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d27e04a871bed428dfd7bee20e33a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLocation: {x: 0, y: 0, z: 0}
+  player: {fileID: 445224432}
 --- !u!4 &1258295646
 Transform:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class SceneLoaderToCatleA : MonoBehaviour
 {
     public Animator transition;
     public float transitionTime = 1f;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,8 @@ public class SceneLoaderToCatleA : MonoBehaviour
         switch (currentScene)
         {
             case 0:
-                nextScene = 1; 
+                nextScene = 1;
+                SavePositionOnExitMainScene();
                 break;
             case 1:
                 nextScene = 0;
@@ -46,5 +48,11 @@ public class SceneLoaderToCatleA : MonoBehaviour
 
         //Load Scene
         SceneManager.LoadScene(levelIndex);
+    }
+
+    private void SavePositionOnExitMainScene()
+    {
+        GlobalPlayerManagement.instance.playerLocation = player.transform.position;
+        //GlobalPlayerManagement.instance.playerLocation.x -= 7;
     }
 }
