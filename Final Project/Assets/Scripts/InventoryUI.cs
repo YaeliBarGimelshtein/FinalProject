@@ -11,10 +11,16 @@ public class InventoryUI : MonoBehaviour
     void Start()
     {
         swordText = GetComponent<TextMeshProUGUI>();
+        UpdateSwordText();
     }
 
-    public void UpdateSwordText(PlayerInventrySwords playerInventory)
+    public void UpdateSwordText()
     {
-        swordText.text = "Sword count: " + playerInventory.NumberOfSwords.ToString();
+        swordText.text = GetDisplayText();
+    }
+
+    private string GetDisplayText()
+    {
+        return "Sword count: " + GlobalPlayerManagement.playerNumberOfSowrds;
     }
 }
