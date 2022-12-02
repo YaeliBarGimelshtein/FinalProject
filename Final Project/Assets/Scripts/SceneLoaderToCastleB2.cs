@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+public class SceneLoaderToCastleB2 : MonoBehaviour
 {
     public Animator transition;
     public float transitionTime = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,18 @@ public class SceneLoader : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        int nextScene = -1;
+        switch (currentScene)
+        {
+            case 0:
+                nextScene = 2;
+                break;
+            case 2:
+                nextScene = 0;
+                break;
+        }
+        StartCoroutine(LoadLevel(nextScene));
     }
 
     IEnumerator LoadLevel(int levelIndex)
