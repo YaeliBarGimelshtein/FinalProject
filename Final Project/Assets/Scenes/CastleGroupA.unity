@@ -607,7 +607,7 @@ MonoBehaviour:
   OnSwordCollected:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 225383493}
         m_TargetAssemblyTypeName: InventoryUI, Assembly-CSharp
         m_MethodName: UpdateSwordText
         m_Mode: 0
