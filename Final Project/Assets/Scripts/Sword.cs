@@ -5,11 +5,13 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     public bool revealed;
+    public bool taken;
 
     void Start()
     {
         gameObject.SetActive(false);
         revealed = false;
+        taken = false;
     }
 
     void Update()
@@ -19,8 +21,11 @@ public class Sword : MonoBehaviour
 
     public void ShowSword(bool state)
     {
-        gameObject.SetActive(state);
-        revealed = state;
+        if(!taken)
+        {
+            gameObject.SetActive(state);
+            revealed = state;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,6 +36,7 @@ public class Sword : MonoBehaviour
             if (playerInventory != null)
             {
                 playerInventory.SwordsCollected();
+                taken = true;
                 gameObject.SetActive(false);
             }
         }
