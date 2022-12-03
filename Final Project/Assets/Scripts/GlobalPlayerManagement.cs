@@ -23,10 +23,10 @@ public class GlobalPlayerManagement : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            if (SceneManager.GetActiveScene().buildIndex == 0)
+            /*if (SceneManager.GetActiveScene().buildIndex == 0)
             {
                 player.transform.position = playerLocation;
-            }
+            }*/
 
         }
     }
