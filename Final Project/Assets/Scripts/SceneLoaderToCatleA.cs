@@ -29,7 +29,7 @@ public class SceneLoaderToCatleA : MonoBehaviour
         {
             case 0:
                 nextScene = 1;
-                //SavePositionOnExitMainScene();
+                SavePositionOnExitMainScene();
                 break;
             case 1:
                 nextScene = 0;

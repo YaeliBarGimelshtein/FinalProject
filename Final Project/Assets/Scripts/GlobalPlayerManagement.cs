@@ -7,6 +7,7 @@ public class GlobalPlayerManagement : MonoBehaviour
 {
     public int playerNumberOfSowrds = 0;
     public Vector3 playerLocation;
+    public GameObject player;
 
     //singeltion
     public static GlobalPlayerManagement instance;
@@ -16,11 +17,17 @@ public class GlobalPlayerManagement : MonoBehaviour
         if(instance == null)
         {
             instance = this;
+            playerLocation = player.transform.position;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
+            if (SceneManager.GetActiveScene().buildIndex == 0)
+            {
+                player.transform.position = playerLocation;
+            }
+
         }
     }
 
