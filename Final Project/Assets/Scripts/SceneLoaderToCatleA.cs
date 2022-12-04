@@ -53,6 +53,6 @@ public class SceneLoaderToCatleA : MonoBehaviour
     private void SavePositionOnExitMainScene()
     {
         GlobalPlayerManagement.instance.playerLocation = player.transform.position;
-        //GlobalPlayerManagement.instance.playerLocation.x -= 7;
+        GlobalPlayerManagement.instance.playerLocation.x -= 7;
     }
 }

@@ -1635,6 +1635,7 @@ MonoBehaviour:
   playerNumberOfSowrds: 0
   playerLocation: {x: 0, y: 0, z: 0}
   player: {fileID: 1862617864}
+  portalCatleA: {fileID: 2135635125}
 --- !u!1 &1051418369
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class GlobalPlayerManagement : MonoBehaviour
     public int playerNumberOfSowrds = 0;
     public Vector3 playerLocation;
     public GameObject player;
+    public GameObject portalCatleA;
 
     //singeltion
     public static GlobalPlayerManagement instance;
@@ -23,10 +24,12 @@ public class GlobalPlayerManagement : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            /*if (SceneManager.GetActiveScene().buildIndex == 0)
+            if (SceneManager.GetActiveScene().buildIndex == 0)
             {
-                player.transform.position = playerLocation;
-            }*/
+                var location = portalCatleA.transform.position;
+                location.x += 7;
+                player.transform.position = location;
+            }
 
         }
     }
