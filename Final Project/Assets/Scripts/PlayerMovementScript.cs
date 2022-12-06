@@ -12,6 +12,7 @@ public class PlayerMovementScript : MonoBehaviour
     public float groundDistance = 0.4f;
     public float jumpHeight = 3f;
     public LayerMask groundMask;
+    AudioSource stepSound;
 
     Vector3 velocity;
     bool isGrounded;
@@ -20,7 +21,7 @@ public class PlayerMovementScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        stepSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -37,6 +38,7 @@ public class PlayerMovementScript : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
+        PlayStepsSound(move);
 
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -45,6 +47,13 @@ public class PlayerMovementScript : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void PlayStepsSound(Vector3 move)
+    {
+        if (Mathf.Abs(move.x) > 0.1 || Mathf.Abs(move.z) > 0.1) // we are moving
+            if (!stepSound.isPlaying)
+                stepSound.Play();
     }
   
 }
