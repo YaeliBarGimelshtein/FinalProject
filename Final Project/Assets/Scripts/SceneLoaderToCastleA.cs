@@ -3,28 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoaderToCatleA : MonoBehaviour
+public class SceneLoaderToCastleA : MonoBehaviour
 {
     public Animator transition;
     public float transitionTime = 1f;
     public GameObject player;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    int nextScene = -1;
 
     private void OnTriggerEnter(Collider other)
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
-        int nextScene = -1;
         switch (currentScene)
         {
             case 0:
@@ -52,7 +40,10 @@ public class SceneLoaderToCatleA : MonoBehaviour
 
     private void SavePositionOnExitMainScene()
     {
-        GlobalPlayerManagement.instance.playerLocation = player.transform.position;
-        GlobalPlayerManagement.instance.playerLocation.x -= 7;
+        var location = gameObject.transform.position;
+        location.x += 7;
+        location.y -= 3;
+        GlobalPlayerManagement.instance.playerLocationOnExitCastleA = location;
+        GlobalPlayerManagement.instance.lastScene = 1;
     }
 }

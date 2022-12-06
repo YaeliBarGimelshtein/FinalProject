@@ -1633,9 +1633,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumberOfSowrds: 0
-  playerLocation: {x: 0, y: 0, z: 0}
+  playerLocationOnExitCastleA: {x: 0, y: 0, z: 0}
+  playerLocationOnExitCastleB: {x: 0, y: 0, z: 0}
   player: {fileID: 1862617864}
-  portalCatleA: {fileID: 2135635125}
+  lastScene: 0
 --- !u!1 &1051418369
 GameObject:
   m_ObjectHideFlags: 0
@@ -3555,6 +3556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transition: {fileID: 1518439326}
   transitionTime: 1
+  player: {fileID: 1862617864}
 --- !u!1001 &2109114084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3676,7 +3678,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2135635125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a6b31352741f904789d2d752c76af12, type: 3}
+  m_Script: {fileID: 11500000, guid: d906938bcce63ff449edab6e1fbfee9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 1518439326}

@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 public class GlobalPlayerManagement : MonoBehaviour
 {
     public int playerNumberOfSowrds = 0;
-    public Vector3 playerLocation;
+    public Vector3 playerLocationOnExitCastleA;
+    public Vector3 playerLocationOnExitCastleB;
     public GameObject player;
-    public GameObject portalCatleA;
+    public int lastScene;
 
     //singeltion
     public static GlobalPlayerManagement instance;
@@ -18,31 +19,27 @@ public class GlobalPlayerManagement : MonoBehaviour
         if(instance == null)
         {
             instance = this;
-            playerLocation = player.transform.position;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
-            if (SceneManager.GetActiveScene().buildIndex == 0)
-            {
-                var location = portalCatleA.transform.position;
-                location.x += 7;
-                player.transform.position = location;
-            }
-
+            SetPlayerPosition();
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void SetPlayerPosition()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            if(instance.lastScene == 1)
+            {
+                player.transform.position = instance.playerLocationOnExitCastleA;
+            }
+            else if (instance.lastScene == 2)
+            {
+                player.transform.position = instance.playerLocationOnExitCastleB;
+            }
+        }
     }
 }

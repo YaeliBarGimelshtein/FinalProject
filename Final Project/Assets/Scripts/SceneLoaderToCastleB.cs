@@ -3,31 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoaderToCastleB2 : MonoBehaviour
+public class SceneLoaderToCastleB : MonoBehaviour
 {
     public Animator transition;
     public float transitionTime = 1f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject player;
+    int nextScene = -1;
 
     private void OnTriggerEnter(Collider other)
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
-        int nextScene = -1;
         switch (currentScene)
         {
             case 0:
                 nextScene = 2;
+                SavePositionOnExitMainScene();
                 break;
             case 2:
                 nextScene = 0;
@@ -46,5 +36,15 @@ public class SceneLoaderToCastleB2 : MonoBehaviour
 
         //Load Scene
         SceneManager.LoadScene(levelIndex);
+    }
+
+    private void SavePositionOnExitMainScene()
+    {
+        var location = gameObject.transform.position;
+        location.x -= 9;
+        location.y -= 3;
+        location.z += 12;
+        GlobalPlayerManagement.instance.playerLocationOnExitCastleB = location;
+        GlobalPlayerManagement.instance.lastScene = 2;
     }
 }
