@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Sword : Weapon
 {
     public bool revealed;
     public bool taken;
+    public GameObject playersLook;
+    public TextMeshProUGUI swordInstrucationsText;
 
     void Start()
     {
@@ -16,7 +19,20 @@ public class Sword : Weapon
 
     void Update()
     {
-
+        if(gameObject.activeSelf)
+        {
+            if (Physics.Raycast(playersLook.transform.position, playersLook.transform.forward, out RaycastHit hit))
+            {
+                if (hit.collider.gameObject == gameObject) // looking at the sword
+                {
+                    swordInstrucationsText.text = "Approach to collect the sword";
+                }
+                else
+                {
+                    swordInstrucationsText.text = "";
+                }
+            }
+        }
     }
 
     public void ShowSword(bool state)
@@ -38,6 +54,7 @@ public class Sword : Weapon
                 playerInventory.SwordsCollected();
                 taken = true;
                 gameObject.SetActive(false);
+                swordInstrucationsText.text = "";
             }
         }
 
