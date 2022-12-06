@@ -9,12 +9,14 @@ public class Sword : Weapon
     public bool taken;
     public GameObject playersLook;
     public TextMeshProUGUI swordInstrucationsText;
+    AudioSource swordDrawSound;
 
     void Start()
     {
         gameObject.SetActive(false);
         revealed = false;
         taken = false;
+        swordDrawSound = GetComponent<AudioSource>(); 
     }
 
     void Update()
@@ -42,13 +44,14 @@ public class Sword : Weapon
             if (playerInventory != null)
             {
                 playerInventory.SwordsCollected();
+                swordDrawSound.Play();
                 taken = true;
                 gameObject.SetActive(false);
                 swordInstrucationsText.text = "";
             }
         }
     }
-   
+
     private void HandleLookAtSword()
     {
         if (Physics.Raycast(playersLook.transform.position, playersLook.transform.forward, out RaycastHit hit))
