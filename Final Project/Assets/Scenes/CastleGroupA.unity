@@ -1182,6 +1182,14 @@ PrefabInstance:
       propertyPath: sword
       value: 
       objectReference: {fileID: 1090510298}
+    - target: {fileID: 4099080793306671577, guid: 470c158d4514aec429e9c721162074d5, type: 3}
+      propertyPath: playersLook
+      value: 
+      objectReference: {fileID: 1197392662}
+    - target: {fileID: 4099080793306671577, guid: 470c158d4514aec429e9c721162074d5, type: 3}
+      propertyPath: chestInstrucationsText
+      value: 
+      objectReference: {fileID: 1854603432}
     - target: {fileID: 5311662307140977911, guid: 470c158d4514aec429e9c721162074d5, type: 3}
       propertyPath: door
       value: 

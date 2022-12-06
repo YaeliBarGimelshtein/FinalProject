@@ -1230,6 +1230,14 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 305571bdf899ece439c64b4165d765fb, type: 2}
+    - target: {fileID: 5077603604431441021, guid: a19f847235ec18544b220ec0f56c93e3, type: 3}
+      propertyPath: playersLook
+      value: 
+      objectReference: {fileID: 1262675511}
+    - target: {fileID: 5077603604431441021, guid: a19f847235ec18544b220ec0f56c93e3, type: 3}
+      propertyPath: chestInstrucationsText
+      value: 
+      objectReference: {fileID: 1309075081}
     - target: {fileID: 5986022380033041240, guid: a19f847235ec18544b220ec0f56c93e3, type: 3}
       propertyPath: playersLook
       value: 

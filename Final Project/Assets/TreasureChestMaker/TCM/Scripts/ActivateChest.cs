@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class ActivateChest : MonoBehaviour {
 
@@ -7,6 +8,8 @@ public class ActivateChest : MonoBehaviour {
 	public float openSpeed = 5F;				// Opening speed
 	public bool canClose;                       // Can the chest be closed
     public Sword sword;
+    public TextMeshProUGUI chestInstrucationsText;
+    public GameObject playersLook;
 
     [HideInInspector]
 	public bool _open;							// Is the chest opened
@@ -14,9 +17,11 @@ public class ActivateChest : MonoBehaviour {
 	void Update () {
 		if(_open){
 			ChestClicked(lidOpen.rotation);
+            HandleLookAtChest(false);
         }
 		else{
 			ChestClicked(lidClose.rotation);
+            HandleLookAtChest(true);
         }
 	}
 	
@@ -38,4 +43,23 @@ public class ActivateChest : MonoBehaviour {
             sword.ShowSword(false);
         }
 	}
+
+    private void HandleLookAtChest(bool chestClosed)
+    {
+        if (Physics.Raycast(playersLook.transform.position, playersLook.transform.forward, out RaycastHit hit))
+        {
+            if (hit.collider.gameObject == gameObject && chestClosed) // looking at the chest
+            {
+                chestInstrucationsText.text = "Click to open chest";
+            }
+            else if (hit.collider.gameObject == gameObject && !chestClosed)
+            {
+                chestInstrucationsText.text = "Click to close chest";
+            }
+            else
+            {
+                chestInstrucationsText.text = "";
+            }
+        }
+    }
 }
