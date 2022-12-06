@@ -21,17 +21,7 @@ public class Sword : Weapon
     {
         if(gameObject.activeSelf)
         {
-            if (Physics.Raycast(playersLook.transform.position, playersLook.transform.forward, out RaycastHit hit))
-            {
-                if (hit.collider.gameObject == gameObject) // looking at the sword
-                {
-                    swordInstrucationsText.text = "Approach to collect the sword";
-                }
-                else
-                {
-                    swordInstrucationsText.text = "";
-                }
-            }
+            HandleLookAtSword();
         }
     }
 
@@ -57,7 +47,20 @@ public class Sword : Weapon
                 swordInstrucationsText.text = "";
             }
         }
-
     }
    
+    private void HandleLookAtSword()
+    {
+        if (Physics.Raycast(playersLook.transform.position, playersLook.transform.forward, out RaycastHit hit))
+        {
+            if (hit.collider.gameObject == gameObject) // looking at the sword
+            {
+                swordInstrucationsText.text = "Approach to collect the sword";
+            }
+            else
+            {
+                swordInstrucationsText.text = "";
+            }
+        }
+    }
 }
