@@ -144,6 +144,7 @@ MonoBehaviour:
   taken: 0
   playersLook: {fileID: 0}
   swordInstrucationsText: {fileID: 0}
+  swordDrawSound: {fileID: 0}
 --- !u!65 &19818294
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -372,7 +373,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: be7c9a3e9bc344a01b53e963a6604874, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1ba9c855800656d4abcc48f875dea4da, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

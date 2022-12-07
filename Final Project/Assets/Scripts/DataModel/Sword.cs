@@ -9,14 +9,14 @@ public class Sword : Weapon
     public bool taken;
     public GameObject playersLook;
     public TextMeshProUGUI swordInstrucationsText;
-    AudioSource swordDrawSound;
+    public AudioSource swordDrawSound;
 
     void Start()
     {
         gameObject.SetActive(false);
         revealed = false;
         taken = false;
-        swordDrawSound = GetComponent<AudioSource>(); 
+        //swordDrawSound = GetComponent<AudioSource>(); 
     }
 
     void Update()
@@ -43,8 +43,8 @@ public class Sword : Weapon
             PlayerInventrySwords playerInventory = other.GetComponent<PlayerInventrySwords>();
             if (playerInventory != null)
             {
-                playerInventory.SwordsCollected();
                 swordDrawSound.Play();
+                playerInventory.SwordsCollected();
                 taken = true;
                 gameObject.SetActive(false);
                 swordInstrucationsText.text = "";
