@@ -16,7 +16,6 @@ public class Sword : Weapon
         gameObject.SetActive(false);
         revealed = false;
         taken = false;
-        //swordDrawSound = GetComponent<AudioSource>(); 
     }
 
     void Update()
