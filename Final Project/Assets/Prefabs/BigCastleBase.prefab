@@ -2006,7 +2006,7 @@ GameObject:
   - component: {fileID: 1099746600922355500}
   - component: {fileID: 1099746600922355499}
   - component: {fileID: 1099746600922355498}
-  - component: {fileID: 6188052374233504305}
+  - component: {fileID: 1099746600922355501}
   m_Layer: 0
   m_Name: CastleMainDoor
   m_TagString: Untagged
@@ -2064,7 +2064,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6, y: 4.5, z: 5}
   m_Center: {x: -0.8, y: 2.2, z: 0}
---- !u!114 &6188052374233504305
+--- !u!114 &1099746600922355501
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42665,10 +42665,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   revealed: 0
-  taken: 0
-  playersLook: {fileID: 0}
-  swordInstrucationsText: {fileID: 0}
-  swordDrawSound: {fileID: 0}
 --- !u!4 &7276019218347456679 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400052, guid: f1fbee7f135f4b54189d3be87753a3d3, type: 3}
@@ -42712,8 +42708,6 @@ MonoBehaviour:
   openSpeed: 5
   canClose: 1
   sword: {fileID: 5986022380033041240}
-  chestInstrucationsText: {fileID: 0}
-  playersLook: {fileID: 0}
   _open: 0
 --- !u!1001 &7438430188365615073
 PrefabInstance:

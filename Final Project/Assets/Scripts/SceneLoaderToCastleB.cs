@@ -6,20 +6,21 @@ using UnityEngine.SceneManagement;
 public class SceneLoaderToCastleB : MonoBehaviour
 {
     public Animator transition;
+    public float transitionTime = 1f;
     public GameObject player;
-    
+    int nextScene = -1;
+
     private void OnTriggerEnter(Collider other)
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
-        int nextScene = -1;
         switch (currentScene)
         {
-            case Constants.MedievalEnvironmentScene:
-                nextScene = Constants.CastleBScene;
+            case 0:
+                nextScene = 2;
                 SavePositionOnExitMainScene();
                 break;
-            case Constants.CastleBScene:
-                nextScene = Constants.MedievalEnvironmentScene;
+            case 2:
+                nextScene = 0;
                 break;
         }
         StartCoroutine(LoadLevel(nextScene));
@@ -31,7 +32,7 @@ public class SceneLoaderToCastleB : MonoBehaviour
         transition.SetTrigger("Start");
 
         //Wait
-        yield return new WaitForSeconds(Constants.TransitionTimeBetweenScenes);
+        yield return new WaitForSeconds(transitionTime);
 
         //Load Scene
         SceneManager.LoadScene(levelIndex);
@@ -40,10 +41,10 @@ public class SceneLoaderToCastleB : MonoBehaviour
     private void SavePositionOnExitMainScene()
     {
         var location = gameObject.transform.position;
-        location.x -= Constants.AdditionalOnXAxesLeavingMedievalEnviromentSceneToCastleBScene;
-        location.y -= Constants.AdditionalOnYAxesLeavingMedievalEnviromentSceneToCastleBScene;
-        location.z += Constants.AdditionalOnZAxesLeavingMedievalEnviromentSceneToCastleBScene;
+        location.x -= 9;
+        location.y -= 3;
+        location.z += 12;
         GlobalPlayerManagement.instance.playerLocationOnExitCastleB = location;
-        GlobalPlayerManagement.instance.lastScene = Constants.CastleBScene;
+        GlobalPlayerManagement.instance.lastScene = 2;
     }
 }

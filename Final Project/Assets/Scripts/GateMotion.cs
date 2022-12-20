@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoubleDoorMotion : MonoBehaviour
+public class GateMotion : MonoBehaviour
 {
-    public Animator animator;
+    Animator animator;
     AudioSource doorSound;
 
     // Start is called before the first frame update
@@ -13,15 +13,21 @@ public class DoubleDoorMotion : MonoBehaviour
         animator = GetComponent<Animator>();
         doorSound = GetComponent<AudioSource>();
     }
-    
+   
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        animator.SetBool(Constants.DoorMotionOpen, true);
+        animator.SetBool("Gate open", true);
         doorSound.Play();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        animator.SetBool(Constants.DoorMotionOpen, false);
+        animator.SetBool("Gate open", false);
     }
 }
