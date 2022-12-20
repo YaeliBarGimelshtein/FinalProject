@@ -3564,8 +3564,8 @@ GameObject:
   - component: {fileID: 2010521631}
   - component: {fileID: 2010521630}
   - component: {fileID: 2010521633}
-  - component: {fileID: 2010521632}
   - component: {fileID: 2010521634}
+  - component: {fileID: 2010521635}
   m_Layer: 0
   m_Name: GateAxis
   m_TagString: Untagged
@@ -3609,18 +3609,6 @@ Transform:
   m_Father: {fileID: 1319605405}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 124.179, z: 0}
---- !u!114 &2010521632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2010521629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 652d132f1e3fe6d4a9025a8db25f91ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &2010521633
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3730,6 +3718,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2010521635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010521629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26608ac664764a54c848c39bc9b560fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2033856783
 PrefabInstance:
   m_ObjectHideFlags: 0
