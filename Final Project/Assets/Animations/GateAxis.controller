@@ -38,10 +38,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1268892765284640442}
-    m_Position: {x: 330, y: 110, z: 0}
+    m_Position: {x: 400, y: 150, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 9103138768775562282}
-    m_Position: {x: 270, y: 190, z: 0}
+    m_Position: {x: 400, y: 260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6896765278202010314}
     m_Position: {x: 397.86627, y: 38.60488, z: 0}
@@ -64,7 +64,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Gate open
+    m_ConditionEvent: GateOpen
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1268892765284640442}
@@ -89,7 +89,7 @@ AnimatorController:
   m_Name: GateAxis
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Gate open
+  - m_Name: GateOpen
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -144,7 +144,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Gate open
+    m_ConditionEvent: GateOpen
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1268892765284640442}
@@ -169,7 +169,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Gate open
+    m_ConditionEvent: GateOpen
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 9103138768775562282}
