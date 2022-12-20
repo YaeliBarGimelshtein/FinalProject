@@ -22,7 +22,7 @@ public class Constants
     public const int AdditionalOnZAxesLeavingMedievalEnviromentSceneToCastleBScene = 12;
 
     //Gate Motion
-    public const string GateMotionOpen = "Gate open";
+    public const string GateMotionOpen = "GateOpen";
 
     //Door Motion
     public const string DoorMotionOpen = "openDoor";
