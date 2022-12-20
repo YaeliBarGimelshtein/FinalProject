@@ -30,13 +30,13 @@ public class GlobalPlayerManagement : MonoBehaviour
 
     void SetPlayerPosition()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex == Constants.MedievalEnvironmentScene)
         {
-            if(instance.lastScene == 1)
+            if(instance.lastScene == Constants.CastleAScene)
             {
                 player.transform.position = instance.playerLocationOnExitCastleA;
             }
-            else if (instance.lastScene == 2)
+            else if (instance.lastScene == Constants.CastleBScene)
             {
                 player.transform.position = instance.playerLocationOnExitCastleB;
             }
