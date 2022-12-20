@@ -1487,6 +1487,10 @@ PrefabInstance:
       propertyPath: swordInstrucationsText
       value: 
       objectReference: {fileID: 1309075081}
+    - target: {fileID: 6188052374233504305, guid: a19f847235ec18544b220ec0f56c93e3, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 46509515}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a19f847235ec18544b220ec0f56c93e3, type: 3}
 --- !u!4 &907647078 stripped

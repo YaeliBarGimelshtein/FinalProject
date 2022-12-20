@@ -4251,6 +4251,10 @@ PrefabInstance:
       propertyPath: chestInstrucationsText
       value: 
       objectReference: {fileID: 1539447079}
+    - target: {fileID: 6188052374233504305, guid: a19f847235ec18544b220ec0f56c93e3, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 657841590}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a19f847235ec18544b220ec0f56c93e3, type: 3}
 --- !u!1001 &2796346338401721933
