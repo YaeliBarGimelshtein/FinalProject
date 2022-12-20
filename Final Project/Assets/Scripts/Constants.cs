@@ -24,4 +24,7 @@ public class Constants
     //Gate Motion
     public const string GateMotionOpen = "Gate open";
 
+    //Door Motion
+    public const string DoorMotionOpen = "openDoor";
+
 }

@@ -13,12 +13,6 @@ public class GateMotion : MonoBehaviour
         animator = GetComponent<Animator>();
         doorSound = GetComponent<AudioSource>();
     }
-   
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {

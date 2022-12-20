@@ -13,21 +13,15 @@ public class DoubleDoorMotion : MonoBehaviour
         animator = GetComponent<Animator>();
         doorSound = GetComponent<AudioSource>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    
     private void OnTriggerEnter(Collider other)
     {
-        animator.SetBool("openDoor", true);
+        animator.SetBool(Constants.DoorMotionOpen, true);
         doorSound.Play();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        animator.SetBool("openDoor", false);
+        animator.SetBool(Constants.DoorMotionOpen, false);
     }
 }
