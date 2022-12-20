@@ -22,12 +22,12 @@ public class GateMotion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        animator.SetBool("Gate open", true);
+        animator.SetBool(Constants.GateMotionOpen, true);
         doorSound.Play();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        animator.SetBool("Gate open", false);
+        animator.SetBool(Constants.GateMotionOpen, false);
     }
 }

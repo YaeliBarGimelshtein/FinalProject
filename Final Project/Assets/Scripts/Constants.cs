@@ -20,4 +20,8 @@ public class Constants
     public const int AdditionalOnXAxesLeavingMedievalEnviromentSceneToCastleBScene = 9;
     public const int AdditionalOnYAxesLeavingMedievalEnviromentSceneToCastleBScene = 3;
     public const int AdditionalOnZAxesLeavingMedievalEnviromentSceneToCastleBScene = 12;
+
+    //Gate Motion
+    public const string GateMotionOpen = "Gate open";
+
 }
