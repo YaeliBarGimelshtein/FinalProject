@@ -12,7 +12,12 @@ public class Constants
     //Transition Time Between Scenes
     public const float TransitionTimeBetweenScenes = 1f;
 
-    //Save Position On Exit Medieval Environment Scene
-    public const int AdditionalOnXAxesLeavingMedievalEnviromentScene = 12;
-    public const int AdditionalOnYAxesLeavingMedievalEnviromentScene = 3;
+    //Save Position On Exit Medieval Environment Scene To Castle A Scene
+    public const int AdditionalOnXAxesLeavingMedievalEnviromentSceneToCastleAScene = 12;
+    public const int AdditionalOnYAxesLeavingMedievalEnviromentSceneToCastleAScene = 3;
+
+    //Save Position On Exit Medieval Environment Scene To Castle B Scene
+    public const int AdditionalOnXAxesLeavingMedievalEnviromentSceneToCastleBScene = 9;
+    public const int AdditionalOnYAxesLeavingMedievalEnviromentSceneToCastleBScene = 3;
+    public const int AdditionalOnZAxesLeavingMedievalEnviromentSceneToCastleBScene = 12;
 }

@@ -41,8 +41,8 @@ public class SceneLoaderToCastleA : MonoBehaviour
     private void SavePositionOnExitMainScene()
     {
         var location = gameObject.transform.position;
-        location.x += Constants.AdditionalOnXAxesLeavingMedievalEnviromentScene;
-        location.y -= Constants.AdditionalOnYAxesLeavingMedievalEnviromentScene;
+        location.x += Constants.AdditionalOnXAxesLeavingMedievalEnviromentSceneToCastleAScene;
+        location.y -= Constants.AdditionalOnYAxesLeavingMedievalEnviromentSceneToCastleAScene;
         GlobalPlayerManagement.instance.playerLocationOnExitCastleA = location;
         GlobalPlayerManagement.instance.lastScene = Constants.CastleAScene;
     }
