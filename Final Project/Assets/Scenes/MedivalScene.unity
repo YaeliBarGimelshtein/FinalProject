@@ -199,6 +199,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1901092911}
     - target: {fileID: 4099080793306671577, guid: 470c158d4514aec429e9c721162074d5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4099080793306671577, guid: 470c158d4514aec429e9c721162074d5, type: 3}
       propertyPath: playersLook
       value: 
       objectReference: {fileID: 757259310}
@@ -3812,7 +3816,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -67.26763, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
