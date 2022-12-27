@@ -10,6 +10,7 @@ public class PlayerInventrySwords : MonoBehaviour
     public void SwordsCollected()
     {
         UpdateSwordCollectedNumber();
+        print("got here");
         OnSwordCollected.Invoke(this);
     }
 
