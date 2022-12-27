@@ -7,7 +7,18 @@ public class SceneLoaderToCastleB : MonoBehaviour
 {
     public Animator transition;
     public GameObject player;
-    
+
+    private void Awake()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == Constants.MedievalEnvironmentScene)
+        {
+            if (GlobalPlayerManagement.instance.lastScene == Constants.CastleBScene)
+            {
+                player.transform.position = GlobalPlayerManagement.instance.playerLocationOnExitCastleB;
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;

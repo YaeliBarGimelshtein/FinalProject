@@ -9,7 +9,7 @@ public class GlobalPlayerManagement : MonoBehaviour
     public Vector3 playerLocationOnExitCastleA;
     public Vector3 playerLocationOnExitCastleB;
     public GameObject player;
-    public int lastScene;
+    public int lastScene = 0;
 
     //singeltion
     public static GlobalPlayerManagement instance;
@@ -24,22 +24,6 @@ public class GlobalPlayerManagement : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            SetPlayerPosition();
-        }
-    }
-
-    void SetPlayerPosition()
-    {
-        if (SceneManager.GetActiveScene().buildIndex == Constants.MedievalEnvironmentScene)
-        {
-            if(instance.lastScene == Constants.CastleAScene)
-            {
-                player.transform.position = instance.playerLocationOnExitCastleA;
-            }
-            else if (instance.lastScene == Constants.CastleBScene)
-            {
-                player.transform.position = instance.playerLocationOnExitCastleB;
-            }
         }
     }
 }
