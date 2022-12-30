@@ -7,7 +7,7 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.DA949528" = "extern"
+	"last_search.DA949528" = "export"
 	"OpenInspectorPreview.DA949528" = "0"
 	"currentGroup.DA949528" = "all"
 }
@@ -57,6 +57,7 @@ objectSelectors = {
 }
 recentSearches = [
 	"e"
+	"c"
 	"p"
 	"ed"
 	"ד"
