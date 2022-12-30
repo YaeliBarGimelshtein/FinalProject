@@ -142,6 +142,10 @@ PrefabInstance:
       propertyPath: swordInstrucationsText
       value: 
       objectReference: {fileID: 1539447079}
+    - target: {fileID: 2398351896579585879, guid: 470c158d4514aec429e9c721162074d5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -12.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2796346338063957802, guid: 470c158d4514aec429e9c721162074d5, type: 3}
       propertyPath: m_RootOrder
       value: 1
