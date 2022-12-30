@@ -12,10 +12,9 @@ public class PlayerMovementScript : MonoBehaviour
     public float groundDistance = 0.4f;
     public float jumpHeight = 3f;
     public LayerMask groundMask;
-    AudioSource stepSound;
-
-    Vector3 velocity;
-    bool isGrounded;
+    private AudioSource stepSound;
+    private Vector3 velocity;
+    private bool isGrounded;
  
 
     // Start is called before the first frame update

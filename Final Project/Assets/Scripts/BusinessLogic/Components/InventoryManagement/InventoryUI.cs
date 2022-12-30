@@ -7,7 +7,6 @@ public class InventoryUI : MonoBehaviour
 {
     private TextMeshProUGUI swordText;
 
-    // Start is called before the first frame update
     void Start()
     {
         swordText = GetComponent<TextMeshProUGUI>();

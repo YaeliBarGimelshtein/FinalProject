@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MainGatesMotion : MonoBehaviour
 {
-    Animator animator;
-    AudioSource doorSound;
+    private Animator animator;
+    private AudioSource doorSound;
 
     // Start is called before the first frame update
     void Start()

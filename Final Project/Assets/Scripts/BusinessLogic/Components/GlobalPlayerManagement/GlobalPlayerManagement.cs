@@ -5,10 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GlobalPlayerManagement : MonoBehaviour
 {
-    public int playerNumberOfSowrds = 0;
     public Vector3 playerLocationOnExitCastleA;
     public Vector3 playerLocationOnExitCastleB;
-    public GameObject player;
+    public int playerNumberOfSowrds = 0;
     public int lastScene = 0;
 
     //singeltion
