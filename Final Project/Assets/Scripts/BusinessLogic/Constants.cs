@@ -27,4 +27,6 @@ public class Constants
     //Door Motion
     public const string DoorMotionOpen = "openDoor";
 
+    //NPC
+    public const double WalkingDistance = 1.8f;
 }

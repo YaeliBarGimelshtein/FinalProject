@@ -24,7 +24,7 @@ public class DefenceSoldier : Soldier, IDefenceSoldierBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        if (!agent.pathPending && agent.remainingDistance < Constants.WalkingDistance)
         {
             Patrol();
         }
@@ -34,11 +34,13 @@ public class DefenceSoldier : Soldier, IDefenceSoldierBehaviour
     {
         // Returns if no points have been set up
         if (partolPlaces.Length == 0)
+        {
             return;
-
+        }
+            
         // Set the agent to go to the currently selected destination.
-        agent.destination = partolPlaces[destinationPoint].position;
-        
+        agent.SetDestination(partolPlaces[destinationPoint].position);
+
         // Choose the next point in the array as the destination,
         // cycling to the start if necessary.
         destinationPoint = (destinationPoint + 1) % partolPlaces.Length;
