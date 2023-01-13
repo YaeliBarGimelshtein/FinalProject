@@ -7,7 +7,7 @@ public abstract class Character : MonoBehaviour
     private Animator animator;
     private UnityEngine.AI.NavMeshAgent agent;
     private int destinationPoint = 0;
-    public Transform[] partolPlaces;
+    public Transform[] walkingPlaces;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,7 @@ public abstract class Character : MonoBehaviour
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.enabled = true;
         agent.autoBraking = false;
-        Patrol();
+        Walk();
     }
 
     // Update is called once per frame
@@ -24,24 +24,24 @@ public abstract class Character : MonoBehaviour
     {
         if (!agent.pathPending && agent.remainingDistance < Constants.WalkingDistance)
         {
-            Patrol();
+            Walk();
         }
     }
 
-    public void Patrol()
+    public void Walk()
     {
         // Returns if no points have been set up
-        if (partolPlaces.Length == 0)
+        if (walkingPlaces.Length == 0)
         {
             return;
         }
 
         // Set the agent to go to the currently selected destination.
-        agent.SetDestination(partolPlaces[destinationPoint].position);
+        agent.SetDestination(walkingPlaces[destinationPoint].position);
 
         // Choose the next point in the array as the destination,
         // cycling to the start if necessary.
-        destinationPoint = (destinationPoint + 1) % partolPlaces.Length;
+        destinationPoint = (destinationPoint + 1) % walkingPlaces.Length;
     }
 
 }
