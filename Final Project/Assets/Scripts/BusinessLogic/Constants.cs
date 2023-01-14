@@ -28,5 +28,6 @@ public class Constants
     public const string DoorMotionOpen = "openDoor";
 
     //NPC
-    public const double WalkingDistance = 1.8f;
+    public const double DefenceSoldierWalkingDistance = 1.8f;
+    public const double VillagerWalkingDistance = 2f;
 }

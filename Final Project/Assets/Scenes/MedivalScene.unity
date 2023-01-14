@@ -350,7 +350,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44957364}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.0499878, y: 0, z: -21.931}
+  m_LocalPosition: {x: 1.0499878, y: 0, z: -20.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -962,6 +962,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8081680854971966272, guid: f89307f03e6360e459d25e168059ab37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081680855002641567, guid: f89307f03e6360e459d25e168059ab37, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -8730,7 +8734,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -8754,13 +8758,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21faced7008690c48a199a773047fdf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  partolPlaces:
+  walkingPlaces:
   - {fileID: 44957365}
-  - {fileID: 1280224844}
   - {fileID: 89320861}
   - {fileID: 1503037628}
   - {fileID: 723705313}
   - {fileID: 451126122}
+  - {fileID: 1280224844}
 --- !u!850595691 &1989963288
 LightingSettings:
   m_ObjectHideFlags: 0

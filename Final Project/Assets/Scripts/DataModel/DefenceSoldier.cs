@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class DefenceSoldier : Soldier, IDefenceSoldierBehaviour
 {
     private Animator animator;
-    private UnityEngine.AI.NavMeshAgent agent;
+    private NavMeshAgent agent;
     private int destinationPoint = 0;
     public Transform[] walkingPlaces;
 
@@ -15,7 +15,7 @@ public class DefenceSoldier : Soldier, IDefenceSoldierBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
         agent.enabled = true;
         agent.autoBraking = false;
         Patrol();
@@ -24,7 +24,7 @@ public class DefenceSoldier : Soldier, IDefenceSoldierBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!agent.pathPending && agent.remainingDistance < Constants.WalkingDistance)
+        if (!agent.pathPending && agent.remainingDistance < Constants.DefenceSoldierWalkingDistance)
         {
             Patrol();
         }
