@@ -8,6 +8,6 @@ namespace Assets.Scripts.Contract.NPC
 {
     interface IDefenceSoldierBehaviour
     {
-        
+        void Patrol();
     }
 }

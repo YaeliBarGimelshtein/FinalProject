@@ -5190,7 +5190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e028a96d9d12f342836adc98002244a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  partolPlaces:
+  walkingPlaces:
   - {fileID: 1394494211}
   - {fileID: 719709284}
   - {fileID: 1146290515}
