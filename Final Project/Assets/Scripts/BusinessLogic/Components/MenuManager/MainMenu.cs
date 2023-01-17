@@ -14,8 +14,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
-        StartCoroutine(LoadLevel(nextScene));
+        StartCoroutine(LoadLevel(Constants.MedievalEnvironmentScene));
     }
 
     IEnumerator LoadLevel(int levelIndex)
