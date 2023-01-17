@@ -5,9 +5,9 @@ using UnityEngine;
 public class Constants 
 {
     //Scenes Indexes
-    public const int MedievalEnvironmentScene = 0;
-    public const int CastleAScene = 1;
-    public const int CastleBScene = 2;
+    public const int MedievalEnvironmentScene = 1;
+    public const int CastleAScene = 2;
+    public const int CastleBScene = 3;
 
     //Transition Time Between Scenes
     public const float TransitionTimeBetweenScenes = 1f;
