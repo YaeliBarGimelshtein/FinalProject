@@ -2055,7 +2055,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1138, y: 568}
+  m_SizeDelta: {x: 1518, y: 996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1513762891
 MonoBehaviour:
@@ -2488,7 +2488,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Our Game
+  m_text: Conqueror's Blade
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cc560421e5726194ea101700e3e51f62, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 5467636fcfe23504abe30f21fc3b3afe, type: 2}
