@@ -11,10 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MedivalScene.unity
     guid: c16eacc7b35cf9e43ba6fb1909878ab1
-  - enabled: 1
-    path: Assets/Scenes/CastleGroupA.unity
-    guid: 53ea6d6a166c0884689624deb5ab52cf
-  - enabled: 1
-    path: Assets/Scenes/CastleGroupB.unity
-    guid: 62ecb660026759a4baff2ff7f870e44f
   m_configObjects: {}

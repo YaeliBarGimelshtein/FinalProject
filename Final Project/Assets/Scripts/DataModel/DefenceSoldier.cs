@@ -10,6 +10,7 @@ public class DefenceSoldier : Soldier, IDefenceSoldierBehaviour
     private NavMeshAgent agent;
     private int destinationPoint = 0;
     public Transform[] walkingPlaces;
+    public HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class DefenceSoldier : Soldier, IDefenceSoldierBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.enabled = true;
         agent.autoBraking = false;
+        healthBar.SetMaxHealth(Constants.MaxHealth);
         Patrol();
     }
 
