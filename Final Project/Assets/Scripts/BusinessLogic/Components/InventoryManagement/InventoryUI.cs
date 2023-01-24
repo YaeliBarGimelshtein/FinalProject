@@ -5,14 +5,13 @@ using TMPro;
 
 public class InventoryUI : MonoBehaviour
 {
-    private TextMeshProUGUI swordText;
-    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI swordText;
+    public TextMeshProUGUI armyHealthText;
     public Bar swordsBar;
     public Bar armyHealthBar;
 
     void Start()
     {
-        swordText = GetComponent<TextMeshProUGUI>();
         UpdateSwordText();
         UpdateHealthText();
     }
@@ -25,7 +24,7 @@ public class InventoryUI : MonoBehaviour
 
     public void UpdateHealthText()
     {
-        healthText.text = "20";
+        armyHealthText.text = "20";
         swordsBar.SetCurrentBar(20);
     }
 }
