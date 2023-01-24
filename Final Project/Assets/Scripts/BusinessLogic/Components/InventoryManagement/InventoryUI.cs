@@ -6,6 +6,7 @@ using TMPro;
 public class InventoryUI : MonoBehaviour
 {
     private TextMeshProUGUI swordText;
+    public Bar swordsBar;
 
     void Start()
     {
@@ -15,11 +16,7 @@ public class InventoryUI : MonoBehaviour
 
     public void UpdateSwordText()
     {
-        swordText.text = GetDisplayText();
-    }
-
-    private string GetDisplayText()
-    {
-        return ": " + GlobalPlayerManagement.instance.playerNumberOfSowrds;
+        swordText.text = GlobalPlayerManagement.instance.playerNumberOfSowrds.ToString();
+        swordsBar.SetCurrentBar(GlobalPlayerManagement.instance.playerNumberOfSowrds);
     }
 }
