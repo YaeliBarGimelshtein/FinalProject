@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PatrolTask : Node
+public class TaskPatrol : Node
 {
     private NavMeshAgent agent;
     private Transform[] walkingPlaces;
     private int destinationPoint = 0;
     private Animator animator;
 
-    public PatrolTask(NavMeshAgent agent, Transform[] walkingPlaces, Animator animator)
+    public TaskPatrol(NavMeshAgent agent, Transform[] walkingPlaces, Animator animator)
     {
         this.agent = agent;
         this.walkingPlaces = walkingPlaces;
