@@ -10143,31 +10143,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1432336249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1432336246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e028a96d9d12f342836adc98002244a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkingPlaces:
-  - {fileID: 656783229}
-  - {fileID: 1489178943}
-  - {fileID: 1868729327}
-  - {fileID: 1286199121}
-  - {fileID: 767181935}
-  - {fileID: 1222633790}
-  - {fileID: 58985879}
-  - {fileID: 1293262078}
-  - {fileID: 1604801789}
-  - {fileID: 1677003952}
-  - {fileID: 1466120079}
-  healthBar: {fileID: 1017357037}
 --- !u!95 &1432336250
 Animator:
   serializedVersion: 4
@@ -10188,6 +10163,33 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1432336251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432336246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce5822be9dc31a42b2e95080e97ada0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkingPlaces:
+  - {fileID: 656783229}
+  - {fileID: 1489178943}
+  - {fileID: 1868729327}
+  - {fileID: 1286199121}
+  - {fileID: 767181935}
+  - {fileID: 1222633790}
+  - {fileID: 58985879}
+  - {fileID: 1293262078}
+  - {fileID: 1604801789}
+  - {fileID: 1677003952}
+  - {fileID: 1466120079}
+  agent: {fileID: 1432336248}
+  animator: {fileID: 1432336250}
+  healthBar: {fileID: 1017357037}
 --- !u!1 &1464316783
 GameObject:
   m_ObjectHideFlags: 0
