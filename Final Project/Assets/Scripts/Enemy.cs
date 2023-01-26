@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private int _healthpoints;
+    public int _healthpoints;
 
     private void Awake()
     {

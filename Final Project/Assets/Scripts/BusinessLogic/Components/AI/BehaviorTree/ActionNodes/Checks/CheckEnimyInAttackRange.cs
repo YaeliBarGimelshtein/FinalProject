@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CheckEnimyInAttackRange : Node
 {
-    private static readonly int enemyLayerMask = 1 << 3;
     private Transform transform;
     private Animator animator;
 

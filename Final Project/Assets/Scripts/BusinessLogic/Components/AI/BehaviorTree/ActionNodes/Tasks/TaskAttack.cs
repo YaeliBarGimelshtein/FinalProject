@@ -8,7 +8,7 @@ public class TaskAttack : Node
     private Transform lastTarget;
     private Enemy enemy;
     private Animator animator;
-    private readonly float attackTime = 1f;
+    private float attackTime = 2f;
     private float attackCounter = 0f;
 
     public TaskAttack(Transform transform)
@@ -19,26 +19,25 @@ public class TaskAttack : Node
     public override NodeState Evaluate()
     {
         Transform target = (Transform)GetData("target");
-        if(target != lastTarget)
+        if (target != lastTarget)
         {
             enemy = target.GetComponent<Enemy>();
             lastTarget = target;
         }
 
         attackCounter += Time.deltaTime;
-        if(attackCounter >= attackTime)
+        if (attackCounter >= attackTime)
         {
-            bool enemyDead = enemy.TakeHit();
-            if(enemyDead)
+            bool enemyIsDead = enemy.TakeHit();
+            if (enemyIsDead)
             {
-                ClearData("target");
                 animator.SetTrigger("Walking");
+                ClearData("target");
             }
             else
             {
                 attackCounter = 0f;
             }
-            
         }
 
         state = NodeState.RUNNING;
