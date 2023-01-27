@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CheckEnemyInSight : Node
 {
-    private static readonly int enemyLayerMask = 1 << 3;
+    private static readonly int enemyBLayerMask = 1 << 3;
     private Transform transform;
     private Animator animator;
 
@@ -20,7 +20,7 @@ public class CheckEnemyInSight : Node
         object target = GetData("target");
         if(target == null)
         {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, SoldierBehaviorTree.enemyRange, enemyLayerMask);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, SoldierBehaviorTree.enemyRange, enemyBLayerMask);
             if(colliders.Length > 0)
             {
                 parent.parent.SetData("target", colliders[0].transform); //saves the first enemy in sight in the root
