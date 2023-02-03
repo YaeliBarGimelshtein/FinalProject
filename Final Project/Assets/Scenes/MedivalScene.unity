@@ -6141,8 +6141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b38547585ca88294fbbcfc25ed354a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordText: {fileID: 0}
-  armyHealthText: {fileID: 0}
+  swordText: {fileID: 2137015582}
+  armyHealthText: {fileID: 522807213}
   swordsBar: {fileID: 275721813}
   armyHealthBar: {fileID: 449809866}
 --- !u!114 &522807213
