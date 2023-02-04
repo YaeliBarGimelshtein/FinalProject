@@ -1,34 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using AStart;
+using Astar;
 
 public class AStar : MonoBehaviour
 {
+    // the set of nodes to be evaluated
     private List<AttackTeamNode> openSet;
+    // the set of nodes already evaluated
     private HashSet<AttackTeamNode> closedSet;
+    // the starting node
     private AttackTeamNode rootNode;
+    // logic for winning and finished move
     private bool win = false;
-
-    public Transform kingsPosition;
-    public Transform kingsWinPosition;
+    private bool finishedMove = false;
+    //unity needed information
+    public Transform kingsLocation;
+    public Transform kingsTargetLocation;
     public List<Soldier> soldiers;
-    private List<int> options; // need to make better logic
+    public List<int> options;
 
-    private bool finishedMove;
-    
     void Start()
     {
         openSet = new List<AttackTeamNode>();
         closedSet = new HashSet<AttackTeamNode>();
-        rootNode = new AttackTeamNode(kingsPosition, kingsPosition, kingsWinPosition, soldiers);
+        rootNode = new AttackTeamNode(kingsLocation, kingsTargetLocation, soldiers);
+        //adding the root node to the open set
         openSet.Add(rootNode);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(finishedMove)
+        if(win)
+        {
+            print("WE WON"); //make ui message maybe
+        }
+        else if(finishedMove)
         {
             MakeNextMove();
         }
@@ -36,61 +44,63 @@ public class AStar : MonoBehaviour
 
     private void MakeNextMove()
     {
-        Node nextMove = GetFirstPriorityNode();
-        //act according to node content
+        AttackTeamNode nextMove = FindNextMove();
+        //act according to node content --> give orders to army
+
+        finishedMove = true;
     }
 
-    private void FindNextMove()
+    private AttackTeamNode FindNextMove()
     {
+        finishedMove = false;
         // node in OPEN with lowest f_cost
-        AttackTeamNode current = openSet[0];
-        current = GetFirstPriorityNode();
+        AttackTeamNode current = GetLowestFcost();
 
         // remove current from open and add to CLOSED
         openSet.Remove(current);
         closedSet.Add(current);
 
-        // if current is the terget node -> path has been find
+        // if current is the terget node -> target reached
         if (current.TargetNodeFound())
         {
             win = true;
-            return;
+            return current;
         }
 
         // for each neighbour of the current node -> add it to open list
         foreach (int option in options)
         {
-            CheckNeighbour(current, option);
+            PossibleMoves move = (PossibleMoves)option;
+            CheckNeighbour(current, move);
         }
-        
+        return current;
     }
 
-    private void CheckNeighbour(AttackTeamNode node, int option)
+    private void CheckNeighbour(AttackTeamNode current, PossibleMoves move)
     {
-        var neighbour = new AttackTeamNode(node, option);
+        var neighbour = new AttackTeamNode(current, move);
 
         // neighbour already visited
         if (closedSet.Contains(neighbour))
         {
             return;
         }
-
-        if (!openSet.Contains(neighbour) && neighbour.fCost < node.fCost)
+        // neighbour is new and has smaller cost than current node
+        if (!openSet.Contains(neighbour) && neighbour.getF() < current.getF())
         {
             openSet.Add(neighbour);
         }
     }
 
-    private AttackTeamNode GetFirstPriorityNode()
+    private AttackTeamNode GetLowestFcost()
     {
         AttackTeamNode current = openSet[0];
 
         for (int i = 1; i < openSet.Count; i++)
         {
-            if (openSet[i].fCost < current.fCost || openSet[i].fCost == current.fCost)
+            if (openSet[i].getF() < current.getF() || openSet[i].getF() == current.getF())
             {
-                if (openSet[i].hCost < current.hCost)
-                    current = openSet[i];
+                current = openSet[i];
             }
         }
         return current;

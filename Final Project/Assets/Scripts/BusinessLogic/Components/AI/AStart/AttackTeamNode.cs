@@ -1,55 +1,128 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using AStart;
 using System;
+using System.Linq;
 
-public class AttackTeamNode : Node
+namespace Astar
 {
-    private Transform kingsCurrentLocation;
-    private Transform kingsStarttingPosition;
-    private Transform kingsTargetgPosition;
-    public List<Soldier> soldiers;
-    
-    /// <summary>
-    /// A constructor for creating the beighbor nodes
-    /// </summary>
-    /// <param name="node"></param>
-    public AttackTeamNode(AttackTeamNode node, int move) 
+    public enum PossibleMoves
     {
-        gCost = node.gCost + 1;
-        hCost = ComputeH();
-        //change soldiers position and behavior according to the move
+        WALK,
+        ATTACK,
+        FALLBACK
     }
+
 
     /// <summary>
-    /// A constructor for creating the root node
+    /// AttackTeamNode represents the state of the attack team at each point of the game
     /// </summary>
-    /// <param name="kingsCurrentLocation"></param>
-    /// <param name="kingsStarttingPosition"></param>
-    /// /// <param name="kingsTargetgPosition"></param>
-    /// <param name="soldiers"></param>
-    public AttackTeamNode(Transform kingsCurrentLocation, Transform kingsStarttingPosition, Transform kingsTargetgPosition,
-        List<Soldier> soldiers)
+    public class AttackTeamNode
     {
-        this.kingsCurrentLocation = kingsCurrentLocation;
-        this.kingsStarttingPosition = kingsStarttingPosition;
-        this.kingsTargetgPosition = kingsTargetgPosition;
-        this.soldiers = soldiers;
+        // army's state
+        public List<Soldier> soldiers;
+        // king's state
+        private Transform kingsCurrentLocation;
+        private Transform kingsTargetgLocation;
+        // a* parameters
+        private float g;
+        private float h;
+        private float f;
+        private AttackTeamNode parentNode;
 
-        gCost = 0;
-        hCost = ComputeH();
-    }
-   
-    public override int ComputeH()
-    {
-        float distance = Vector3.Distance(kingsCurrentLocation.position, kingsStarttingPosition.position);
-        //calculate soldiers health
-        return (int)Math.Round(distance);
-    }
+        /// <summary>
+        /// This constructor creates the root node for the a* graph, meaning the initial state of the attack team
+        /// </summary>
+        public AttackTeamNode(Transform kingsCurrentLocation, Transform kingsTargetgLocation, List<Soldier> soldiers)
+        {
+            //army's state
+            this.soldiers = soldiers;
+            //king's state
+            this.kingsCurrentLocation = kingsCurrentLocation;
+            this.kingsTargetgLocation = kingsTargetgLocation;
+            //a* parameters 
+            g = 0;
+            h = ComputeH(kingsCurrentLocation, kingsTargetgLocation, soldiers);
+            f = ComputeF(g, h);
+        }
 
-    public override bool TargetNodeFound()
-    {
-        return kingsCurrentLocation.Equals(kingsTargetgPosition);
+        /// <summary>
+        /// This constructor creates neighbors of each given node, meaning all possible moves from this current team's state
+        /// </summary>
+        public AttackTeamNode(AttackTeamNode attackTeamNode, PossibleMoves move)
+        {
+            //new army's state
+            HandleNewMove(move);
+
+            //a* parameters 
+            g = ComputeG(attackTeamNode.g);
+            //h = ComputeH(kingsCurrentLocation, kingsTargetgLocation);
+            f = ComputeF(g, h);
+            parentNode = attackTeamNode;
+        }
+
+        private float ComputeH(Transform kingsCurrentLocation, Transform kingsTargetgLocation, List<Soldier> soldiers) 
+        {
+            float armysHealth = CalculateArmysHealth(soldiers);
+            float kingsDistanceFromTarget = Vector3.Distance(kingsCurrentLocation.position, kingsTargetgLocation.position);
+            return kingsDistanceFromTarget - armysHealth; // - or + 
+        }
+
+        private float ComputeG(float lastG)
+        {
+            return lastG + 1;
+        }
+
+        private float ComputeF(float g, float h)
+        {
+            return g + h;
+        }
+
+        private float CalculateArmysHealth(List<Soldier> army)
+        {
+            List<float> soldiersHealth = soldiers.Select(s => s.Helath).ToList();
+            float armysHealth = 0;
+
+            foreach (var soldierHealth in soldiersHealth)
+            {
+                armysHealth += soldierHealth;
+            }
+
+            return armysHealth;
+        }
+
+        private void HandleNewMove(PossibleMoves move)
+        {
+            switch(move)
+            {
+                case PossibleMoves.ATTACK:
+                    break;
+                case PossibleMoves.FALLBACK:
+                    break;
+                case PossibleMoves.WALK:
+                    break;
+            }
+        }
+        
+        public float getF()
+        {
+            return f;
+        }
+
+        public float getG()
+        {
+            return g;
+        }
+
+        public float getH()
+        {
+            return h;
+        }
+
+        public bool TargetNodeFound()
+        {
+            return kingsCurrentLocation.Equals(kingsTargetgLocation);
+        }
     }
 }
+
