@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d6c57d61f6f9494b8a781d7804b1a8f, type: 3}
-  m_Name: Defend
+  m_Script: {fileID: 11500000, guid: 696f1ddb666f43849b47e036f9ec7348, type: 3}
+  m_Name: DistanceConsideration
   m_EditorClassIdentifier: 
-  Name: DEFEND
-  considerations:
-  - {fileID: 11400000, guid: 68b946ee7e5a9144d8c88cb792046548, type: 2}
+  Name: DISTANCE

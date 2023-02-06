@@ -8,6 +8,7 @@ namespace UtilityAI.Core
     {
         public Action bestAction { get; set; }
         private SoldierController npc;
+        public bool finishedDeciding { get; set; }
 
         // Start is called before the first frame update
         void Start()
@@ -18,7 +19,10 @@ namespace UtilityAI.Core
         // Update is called once per frame
         void Update()
         {
-
+            if(bestAction == null)
+            {
+                DecideBestAction(npc.actionsAvailable);
+            }
         }
 
         /// <summary>
@@ -69,6 +73,7 @@ namespace UtilityAI.Core
             }
 
             bestAction = actionsAvailable[bestActionIndex];
+            finishedDeciding = true;
         }
     }
 }

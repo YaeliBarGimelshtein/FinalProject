@@ -13522,7 +13522,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ffc81d379a89f349b1a86da77b9f5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionsAvailable: []
+  actionsAvailable:
+  - {fileID: 11400000, guid: edb9c98de585c034cbdc2c3ec93e2a95, type: 2}
+  - {fileID: 11400000, guid: 5d1ff4c2bf3ff30499f2a7c4d7422513, type: 2}
 --- !u!208 &1462271332
 NavMeshObstacle:
   m_ObjectHideFlags: 0

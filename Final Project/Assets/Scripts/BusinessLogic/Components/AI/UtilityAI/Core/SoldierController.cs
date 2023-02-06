@@ -20,7 +20,11 @@ namespace UtilityAI.Core
         // Update is called once per frame
         void Update()
         {
-
+            if(aiBrain.finishedDeciding)
+            {
+                aiBrain.finishedDeciding = false;
+                aiBrain.bestAction.Execute(this);
+            }
         }
 
         public void DoFallback(int time)
@@ -39,6 +43,14 @@ namespace UtilityAI.Core
             Debug.Log("I Fallback once");
 
             //logic to Fallback
+
+            //decide new action when finished
+            OnFinishedAction();
+        }
+
+        public void OnFinishedAction()
+        {
+            aiBrain.DecideBestAction(actionsAvailable);
         }
     }
 }

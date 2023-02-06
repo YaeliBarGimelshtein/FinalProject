@@ -11,6 +11,8 @@ namespace UtilityAI.Actions
         public override void Execute(SoldierController npc)
         {
             Debug.Log("do defend");
+            //logic
+            npc.OnFinishedAction();
         }
     }
 }
