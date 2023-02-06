@@ -13495,24 +13495,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 1432336246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ce5822be9dc31a42b2e95080e97ada0, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bbfa5d07afb1d843abcc001a1c6f17c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingPlaces:
-  - {fileID: 656783229}
-  - {fileID: 1489178943}
-  - {fileID: 1868729327}
-  - {fileID: 1286199121}
-  - {fileID: 767181935}
-  - {fileID: 1222633790}
-  - {fileID: 58985879}
-  - {fileID: 1293262078}
-  - {fileID: 1604801789}
-  - {fileID: 1677003952}
-  - {fileID: 1466120079}
-  agent: {fileID: 1432336248}
-  animator: {fileID: 1432336250}
-  healthBar: {fileID: 1017357037}
+--- !u!114 &1432336252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432336246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919a65b83a750ba43bf7fc88785cfd2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1432336253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432336246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ffc81d379a89f349b1a86da77b9f5ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionsAvailable: []
 --- !u!208 &1462271332
 NavMeshObstacle:
   m_ObjectHideFlags: 0
