@@ -12,7 +12,8 @@ namespace UtilityAI.Actions
         {
             Debug.Log("do attack");
             //logic
-
+            npc.Attack();
+            //when finished
             npc.OnFinishedAction();
         }
     }

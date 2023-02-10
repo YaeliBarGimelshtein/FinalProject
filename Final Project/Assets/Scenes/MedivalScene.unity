@@ -13494,6 +13494,7 @@ MonoBehaviour:
   actionsAvailable:
   - {fileID: 11400000, guid: 53d6b0adeeea09e4a81f4294cabcf6ee, type: 2}
   - {fileID: 11400000, guid: 5d1ff4c2bf3ff30499f2a7c4d7422513, type: 2}
+  homePosition: {fileID: 7524627}
 --- !u!208 &1462271332
 NavMeshObstacle:
   m_ObjectHideFlags: 0
