@@ -35,7 +35,7 @@ namespace UtilityAI.Core
             float score = 1f;
             for (int i = 0; i < action.considerations.Length; i++)
             {
-                float considerationScore = action.considerations[i].ScoreConsideration();
+                float considerationScore = action.considerations[i].ScoreConsideration(npc);
                 score *= considerationScore;
 
                 if(score == 0)

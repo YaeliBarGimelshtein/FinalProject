@@ -8,9 +8,12 @@ namespace UtilityAI.Considerations
     [CreateAssetMenu(fileName = "DistanceConsideration", menuName = "UtilityAI/Considerations/DistanceConsideration")]
     public class DistanceConsideration : Consideration
     {
-        public override float ScoreConsideration()
+        [SerializeField] private AnimationCurve responseCurve;
+
+        public override float ScoreConsideration(SoldierController npc)
         {
-            return 0.1f;
+            score = responseCurve.Evaluate(Mathf.Clamp01(npc.GetEnemyDistance()));
+            return score;
             //add logic here
         }
     }

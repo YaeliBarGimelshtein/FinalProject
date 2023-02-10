@@ -8,9 +8,12 @@ namespace UtilityAI.Considerations
     [CreateAssetMenu(fileName = "HealthConsideration", menuName = "UtilityAI/Considerations/HealthConsideration")]
     public class HealthConsideration : Consideration
     {
-        public override float ScoreConsideration()
+        [SerializeField] private AnimationCurve responseCurve;
+
+        public override float ScoreConsideration(SoldierController npc)
         {
-            return 0.9f;
+            score = responseCurve.Evaluate(Mathf.Clamp01(npc.GetSoldierHealth()));
+            return score;
             //add logic here
         }
     }
