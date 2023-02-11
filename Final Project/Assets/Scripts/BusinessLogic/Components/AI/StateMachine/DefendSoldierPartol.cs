@@ -83,7 +83,7 @@ public class DefendSoldierPartol : StateMachineBehaviour
                 distance = currentEnemyDistance;
             }
         }
-        soldierData.Enemy = colliders[closestEnemyIndex].transform;
+        soldierData.Enemy = colliders[closestEnemyIndex].gameObject;
         return distance;
     }
 }
