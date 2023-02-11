@@ -74,7 +74,7 @@ namespace UtilityAI.Core
         #region IOfenceSoldierBehaviour
         public void Fallback()
         {
-            Debug.Log("I Fallback once");
+            //Debug.Log("I Fallback once");
 
             //logic to Fallback
             mover.MoveTo(homePosition.position);
