@@ -5,14 +5,14 @@ using UtilityAI.Core;
 
 namespace UtilityAI.Considerations
 {
-    [CreateAssetMenu(fileName = "DistanceConsideration", menuName = "UtilityAI/Considerations/DistanceConsideration")]
-    public class DistanceConsideration : Consideration
+    [CreateAssetMenu(fileName = "KingDistanceConsideration", menuName = "UtilityAI/Considerations/KingDistanceConsideration")]
+    public class KingDistanceConsideration : Consideration
     {
         [SerializeField] private AnimationCurve responseCurve;
 
         public override float ScoreConsideration(SoldierController npc)
         {
-            score = responseCurve.Evaluate(Mathf.Clamp01(npc.GetEnemyDistance()));
+            score = responseCurve.Evaluate(Mathf.Clamp01(npc.GetKingDistance()));
             return score;
         }
     }

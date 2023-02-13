@@ -74,6 +74,11 @@ namespace UtilityAI.Core
         {
             return soldierData.Health;
         }
+
+        public float GetKingDistance()
+        {
+            return Vector3.Distance(transform.position, king.transform.position);
+        }
         #endregion
 
         #region IOfenceSoldierBehaviour
@@ -105,6 +110,7 @@ namespace UtilityAI.Core
         public void FollowTheKing()
         {
             gameObject.transform.LookAt(king.transform);
+            animator.SetTrigger("Walking");
             mover.MoveTo(king.transform.position);
         }
 

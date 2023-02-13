@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: ProtectTheKing
   m_EditorClassIdentifier: 
   Name: PROTECTTHEKING
-  considerations: []
+  considerations:
+  - {fileID: 11400000, guid: 6e2c227f8a29ac544bd65517407ab233, type: 2}
