@@ -15,6 +15,7 @@ namespace UtilityAI.Core
         public Transform homePosition;
         public GameObject king;
         public Animator animator { get; set; }
+        public bool finishExecute { get; set; }
         private static readonly int enemyBLayerMask = 1 << 3;
         
         // Start is called before the first frame update
@@ -24,14 +25,16 @@ namespace UtilityAI.Core
             aiBrain = GetComponent<AIBrain>();
             soldierData = GetComponent<Soldier>();
             animator = GetComponent<Animator>();
+            finishExecute = true;
         }
         
         // Update is called once per frame
         void Update()
         {
-            if(aiBrain.finishedDeciding)
+            if(aiBrain.finishedDeciding && finishExecute)
             {
                 aiBrain.finishedDeciding = false;
+                finishExecute = false;
                 aiBrain.bestAction.Execute(this);
             }
         }
@@ -102,23 +105,34 @@ namespace UtilityAI.Core
 
         public void FollowTheKing()
         {
-            gameObject.transform.LookAt(king.transform);
-            animator.SetTrigger("Walking");
-            mover.MoveTo(king.transform.position);
+            StartCoroutine(FollowTheKingCoroutine());
         }
 
         public void ProtectTheKing()
         {
             gameObject.transform.LookAt(soldierData.Enemy.transform);
             mover.MoveTo(soldierData.Enemy.transform.position);
+            finishExecute = true;
+        }
+
+        IEnumerator FollowTheKingCoroutine()
+        {
+            gameObject.transform.LookAt(king.transform);
+            animator.SetTrigger("Walking");
+            yield return new WaitForSeconds(2);
+            mover.MoveTo(king.transform.position);
+            finishExecute = true;
         }
 
         IEnumerator AttackCoroutine()
         {
-            gameObject.transform.LookAt(soldierData.Enemy.transform);
-            animator.SetTrigger("Attack");
-            yield return new WaitForSeconds(1);
-            soldierData.MakeAnAttack();
+            if(soldierData.Enemy != null)
+            {
+                animator.SetTrigger("Attacking");
+                yield return new WaitForSeconds(2);
+                soldierData.MakeAnAttack();
+            }
+            finishExecute = true;
         }
         #endregion
     }
