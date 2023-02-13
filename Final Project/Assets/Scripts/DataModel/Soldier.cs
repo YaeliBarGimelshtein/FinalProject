@@ -15,7 +15,10 @@ public class Soldier : Character
     void Start()
     {
         Health = 5;
-        healthBar.SetMaxBar(Health);
+        if(healthBar != null)
+        {
+            healthBar.SetMaxBar(Health);
+        }
         isAttacking = false;
     }
 
@@ -40,7 +43,10 @@ public class Soldier : Character
     public void TakeAHit()
     {
         Health -= 1;
-        healthBar.SetCurrentBar(Health);
+        if(healthBar != null)
+        {
+            healthBar.SetCurrentBar(Health);
+        }
         Debug.Log("took a hit! have " + Health + " lives");
         if(Health == 0)
         {

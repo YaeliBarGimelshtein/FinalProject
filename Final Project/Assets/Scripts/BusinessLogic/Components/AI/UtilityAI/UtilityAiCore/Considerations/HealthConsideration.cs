@@ -12,7 +12,7 @@ namespace UtilityAI.Considerations
 
         public override float ScoreConsideration(SoldierController npc)
         {
-            score = responseCurve.Evaluate(Mathf.Clamp01(npc.GetSoldierHealth()));
+            score = responseCurve.Evaluate(Mathf.Clamp01(npc.GetSoldierHealth()/5));
             return score;
         }
     }

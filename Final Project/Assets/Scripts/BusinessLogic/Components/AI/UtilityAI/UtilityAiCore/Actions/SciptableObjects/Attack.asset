@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Attack
   m_EditorClassIdentifier: 
   Name: ATTACK
-  considerations: []
+  considerations:
+  - {fileID: 11400000, guid: 523c3e46b52bb5942b9bc39ee292aa1c, type: 2}

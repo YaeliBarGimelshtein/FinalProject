@@ -44,17 +44,17 @@ namespace UtilityAI.Core
         #region ConsiderationsWorldData
         public float GetEnemyDistance()
         {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, 1f, enemyBLayerMask);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 10f, enemyBLayerMask);
             if (colliders.Length > 0)
             {
                 return GetClosestEnemy(colliders);
             }
-            return -1f;
+            return 10f;
         }
 
         private float GetClosestEnemy(Collider[] colliders)
         {
-            float distance = 0f;
+            float distance = 10f;
             int closestEnemyIndex = 0;
 
             for (int i = 0; i < colliders.Length; i++)
@@ -84,13 +84,8 @@ namespace UtilityAI.Core
         #region IOfenceSoldierBehaviour
         public void Fallback()
         {
-            //Debug.Log("I Fallback once");
-
-            //logic to Fallback
+            animator.SetTrigger("Walking");
             mover.MoveTo(homePosition.position);
-
-            //decide new action when finished
-            OnFinishedAction();
         }
 
         public void Defend()
@@ -102,9 +97,7 @@ namespace UtilityAI.Core
 
         public void Attack()
         {
-            gameObject.transform.LookAt(soldierData.Enemy.transform);
-            animator.SetTrigger("Attack");
-            soldierData.MakeAnAttack();
+            StartCoroutine(AttackCoroutine());
         }
 
         public void FollowTheKing()
@@ -118,6 +111,14 @@ namespace UtilityAI.Core
         {
             gameObject.transform.LookAt(soldierData.Enemy.transform);
             mover.MoveTo(soldierData.Enemy.transform.position);
+        }
+
+        IEnumerator AttackCoroutine()
+        {
+            gameObject.transform.LookAt(soldierData.Enemy.transform);
+            animator.SetTrigger("Attack");
+            yield return new WaitForSeconds(1);
+            soldierData.MakeAnAttack();
         }
         #endregion
     }

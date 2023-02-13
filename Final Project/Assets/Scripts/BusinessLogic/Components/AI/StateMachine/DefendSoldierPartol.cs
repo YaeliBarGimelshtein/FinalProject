@@ -71,7 +71,7 @@ public class DefendSoldierPartol : StateMachineBehaviour
 
     private float GetClosestEnemy(Collider[] colliders)
     {
-        float distance = 0f;
+        float distance = 5f;
         int closestEnemyIndex = 0;
 
         for (int i = 0; i < colliders.Length; i++)
