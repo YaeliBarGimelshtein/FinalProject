@@ -5,12 +5,12 @@ using UtilityAI.Core;
 
 namespace UtilityAI.Actions
 {
-    [CreateAssetMenu(fileName = "Attack", menuName = "UtilityAI/Actions/Attack")]
-    public class Attack : Action
+    [CreateAssetMenu(fileName = "ProtectTheKing", menuName = "UtilityAI/Actions/ProtectTheKing")]
+    public class ProtectTheKing : Action
     {
         public override void Execute(SoldierController npc)
         {
-            npc.Attack();
+            npc.ProtectTheKing();
             npc.OnFinishedAction();
         }
     }

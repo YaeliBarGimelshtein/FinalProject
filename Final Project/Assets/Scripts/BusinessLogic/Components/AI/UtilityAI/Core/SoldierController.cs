@@ -6,13 +6,15 @@ using Assets.Scripts.Contract.NPC;
 
 namespace UtilityAI.Core
 {
-    public class SoldierController : Soldier, IOfenceSoldierBehaviour
+    public class SoldierController : Character, IOfenceSoldierBehaviour
     {
+        public Soldier soldierData { get; protected set; }
         public MoveController mover { get; set; }
         public AIBrain aiBrain { get; set; }
-        public Bar healthBar;
         public Action[] actionsAvailable;
         public Transform homePosition;
+        public GameObject king;
+        public Animator animator { get; set; }
         private static readonly int enemyBLayerMask = 1 << 3;
         
         // Start is called before the first frame update
@@ -20,6 +22,8 @@ namespace UtilityAI.Core
         {
             mover = GetComponent<MoveController>();
             aiBrain = GetComponent<AIBrain>();
+            soldierData = GetComponent<Soldier>();
+            animator = GetComponent<Animator>();
         }
         
         // Update is called once per frame
@@ -40,7 +44,7 @@ namespace UtilityAI.Core
         #region ConsiderationsWorldData
         public float GetEnemyDistance()
         {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, 30f, enemyBLayerMask);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 1f, enemyBLayerMask);
             if (colliders.Length > 0)
             {
                 return GetClosestEnemy(colliders);
@@ -62,12 +66,13 @@ namespace UtilityAI.Core
                     distance = currentEnemyDistance;
                 }
             }
+            soldierData.Enemy = colliders[closestEnemyIndex].gameObject;
             return distance;
         }
 
         public float GetSoldierHealth()
         {
-            return Health;
+            return soldierData.Health;
         }
         #endregion
 
@@ -85,14 +90,28 @@ namespace UtilityAI.Core
 
         public void Defend()
         {
-            //activate defend animation
-            //reduce health
+            gameObject.transform.LookAt(soldierData.Enemy.transform);
+            animator.SetTrigger("Defend");
+            soldierData.TakeAHit();
         }
 
         public void Attack()
         {
-            //activate attack animation
-            //reduce enemy health
+            gameObject.transform.LookAt(soldierData.Enemy.transform);
+            animator.SetTrigger("Attack");
+            soldierData.MakeAnAttack();
+        }
+
+        public void FollowTheKing()
+        {
+            gameObject.transform.LookAt(king.transform);
+            mover.MoveTo(king.transform.position);
+        }
+
+        public void ProtectTheKing()
+        {
+            gameObject.transform.LookAt(soldierData.Enemy.transform);
+            mover.MoveTo(soldierData.Enemy.transform.position);
         }
         #endregion
     }

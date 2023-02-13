@@ -9,5 +9,7 @@ namespace Assets.Scripts.Contract.NPC
         void Defend();
         void Attack();
         void Fallback();
+        void FollowTheKing();
+        void ProtectTheKing();
     }
 }

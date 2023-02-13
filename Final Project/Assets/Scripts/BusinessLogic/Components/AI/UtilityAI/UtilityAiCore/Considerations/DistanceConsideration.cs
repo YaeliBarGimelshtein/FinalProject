@@ -14,7 +14,6 @@ namespace UtilityAI.Considerations
         {
             score = responseCurve.Evaluate(Mathf.Clamp01(npc.GetEnemyDistance()));
             return score;
-            //add logic here
         }
     }
 }

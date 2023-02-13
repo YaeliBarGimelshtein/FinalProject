@@ -14,7 +14,6 @@ namespace UtilityAI.Considerations
         {
             score = responseCurve.Evaluate(Mathf.Clamp01(npc.GetSoldierHealth()));
             return score;
-            //add logic here
         }
     }
 }

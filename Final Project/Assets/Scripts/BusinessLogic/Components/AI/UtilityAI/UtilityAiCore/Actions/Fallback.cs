@@ -10,9 +10,7 @@ namespace UtilityAI.Actions
     {
         public override void Execute(SoldierController npc)
         {
-            //logic
             npc.Fallback();
-            //when finished
             npc.OnFinishedAction();
         }
     }
