@@ -45,7 +45,7 @@ namespace UtilityAI.Core
             {
                 return GetClosestEnemy(colliders);
             }
-            return 0f;
+            return -1f;
         }
 
         private float GetClosestEnemy(Collider[] colliders)
@@ -67,7 +67,7 @@ namespace UtilityAI.Core
 
         public float GetSoldierHealth()
         {
-            return Helath;
+            return Health;
         }
         #endregion
 
