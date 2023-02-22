@@ -30,21 +30,22 @@ public class DefendSoldierPartol : StateMachineBehaviour
             Patrol();
         }
 
-        if (GetEnemyDistance() <= 2f && GetEnemyDistance() != -1)
+        var enemyDistance = GetEnemyDistance();
+        if (enemyDistance <= 10f && enemyDistance != -1)
         {
-            agent.isStopped = true;
-            animator.SetTrigger("Attack");
+            animator.SetTrigger("RunToEnemy");
         }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger("Attack");
+        animator.ResetTrigger("RunToEnemy");
     }
 
     private void Patrol()
     {
+        
         // Returns if no points have been set up
         if (walkingPlaces.Count == 0)
         {
@@ -61,7 +62,7 @@ public class DefendSoldierPartol : StateMachineBehaviour
 
     public float GetEnemyDistance()
     {
-        Collider[] colliders = Physics.OverlapSphere(soldier.position, 1f, enemyALayerMask);
+        Collider[] colliders = Physics.OverlapSphere(soldier.position, 10f, enemyALayerMask);
         if (colliders.Length > 0)
         {
             return GetClosestEnemy(colliders);
@@ -71,13 +72,13 @@ public class DefendSoldierPartol : StateMachineBehaviour
 
     private float GetClosestEnemy(Collider[] colliders)
     {
-        float distance = 5f;
+        float distance = 20f;
         int closestEnemyIndex = 0;
 
         for (int i = 0; i < colliders.Length; i++)
         {
             float currentEnemyDistance = Vector3.Distance(soldier.position, colliders[i].transform.position);
-            if (currentEnemyDistance < distance)
+            if (currentEnemyDistance < distance && EnemyIsAlive(colliders[i].gameObject))
             {
                 closestEnemyIndex = i;
                 distance = currentEnemyDistance;
@@ -85,5 +86,15 @@ public class DefendSoldierPartol : StateMachineBehaviour
         }
         soldierData.Enemy = colliders[closestEnemyIndex].gameObject;
         return distance;
+    }
+
+    private bool EnemyIsAlive(GameObject enemy)
+    {
+        var lives = enemy.GetComponent<Soldier>().Health;
+        if(lives > 0 )
+        {
+            return true;
+        }
+        return false;
     }
 }

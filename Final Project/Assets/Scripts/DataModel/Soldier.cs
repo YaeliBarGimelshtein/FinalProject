@@ -50,8 +50,14 @@ public class Soldier : Character
         Debug.Log("took a hit! have " + Health + " lives");
         if(Health == 0)
         {
-            Destroy(gameObject);
+            Debug.Log("DEAD");
+            //Destroy(gameObject);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(gameObject.transform.position, 10f);
     }
 
 }
