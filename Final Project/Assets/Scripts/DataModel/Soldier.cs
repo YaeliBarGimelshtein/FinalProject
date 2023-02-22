@@ -10,6 +10,7 @@ public class Soldier : Character
     public GameObject Enemy { get; set; }
     public Bar healthBar;
     public bool isAttacking { get; set; }
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,7 @@ public class Soldier : Character
             healthBar.SetMaxBar(Health);
         }
         isAttacking = false;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -52,6 +54,7 @@ public class Soldier : Character
         {
             Debug.Log("DEAD");
             //Destroy(gameObject);
+            animator.SetTrigger("Dead");
         }
     }
 
