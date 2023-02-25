@@ -56,6 +56,10 @@ public class Soldier : Character
             //Destroy(gameObject);
             animator.SetTrigger("Dead");
         }
+        else
+        {
+            animator.SetTrigger("Defend"); // Soldier took a hit and is now defending himself
+        }
     }
 
     private void OnDrawGizmos()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class DefendSoldierAttack : StateMachineBehaviour
+public class DefendSoldierDefend : StateMachineBehaviour
 {
     private NavMeshAgent agent;
     private Soldier soldierData;
@@ -14,7 +14,7 @@ public class DefendSoldierAttack : StateMachineBehaviour
     {
         agent = animator.GetComponent<NavMeshAgent>();
         soldierData = animator.GetComponent<Soldier>();
-        if(soldierData.Enemy != null)
+        if (soldierData.Enemy != null)
         {
             enemy = soldierData.Enemy.GetComponent<Soldier>();
         }
@@ -25,12 +25,10 @@ public class DefendSoldierAttack : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 
-        /*if(enemy.isAttacking)
+        if (enemy.Health > 0)// Maybe another soldier attacked our enemy while we were defending
         {
-            animator.SetTrigger("Defend");
-        }
-        */
-        if(enemy.Health == 0)
+            animator.SetTrigger("Attack");
+        }else
         {
             animator.SetTrigger("Patrol");
         }
@@ -40,6 +38,5 @@ public class DefendSoldierAttack : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent.isStopped = false;
-        agent.speed -= 2;
     }
 }
