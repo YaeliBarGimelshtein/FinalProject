@@ -12,7 +12,16 @@ namespace UtilityAI.Considerations
 
         public override float ScoreConsideration(SoldierController npc)
         {
-            score = responseCurve.Evaluate(Mathf.Clamp01(npc.GetKingDistance()/100));
+            var distance = npc.GetKingDistance();
+            if(distance > 100)
+            {
+                distance = 1;
+            }
+            else
+            {
+                distance = distance / 100;
+            }
+            score = responseCurve.Evaluate(Mathf.Clamp01(distance));
             return score;
         }
     }

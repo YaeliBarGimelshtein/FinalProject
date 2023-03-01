@@ -698,7 +698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c1aabcf330316ad468ae65342756900d, type: 3}
       propertyPath: m_Name
-      value: Paladin WProp J Nordstrom@Swagger Walk
+      value: SoldierTeamB
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c1aabcf330316ad468ae65342756900d, type: 3}
       propertyPath: m_Layer
@@ -839,6 +839,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c1aabcf330316ad468ae65342756900d, type: 3}
   m_PrefabInstance: {fileID: 6494123975850330076}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &1169874071338603824
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6259628036000660109}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &1767059407
 Animator:
   serializedVersion: 4
@@ -881,7 +894,21 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1767059408
+--- !u!114 &7666868808277306276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6259628036000660109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb4dab547c43de4e9033a7ecb9eaddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 767381118}
+  data: {fileID: 0}
+--- !u!114 &1129050184708486845
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -893,7 +920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60722328f4c90124b919144b7e711ef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 767381118}
+  animator: {fileID: 0}
 --- !u!4 &6743430313123602487 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c1aabcf330316ad468ae65342756900d, type: 3}

@@ -8,14 +8,14 @@ public class DefendSoldierRunToEnemy : StateMachineBehaviour
 {
     private NavMeshAgent agent;
     private Transform soldier;
-    private Soldier soldierData;
+    private DefenseSoldier soldierData;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
         soldier = animator.GetComponent<Transform>();
-        soldierData = animator.GetComponent<Soldier>();
+        soldierData = animator.GetComponent<DefenseSoldier>();
 
         agent.speed += 2;
     }
@@ -39,7 +39,7 @@ public class DefendSoldierRunToEnemy : StateMachineBehaviour
     {
         if(soldierData != null)
         {
-            var distance = Vector3.Distance(soldier.position, soldierData.Enemy.transform.position);
+            var distance = Vector3.Distance(soldier.position, soldierData.data.Enemy.transform.position);
             if(distance <= 3)
             {
                 return true;

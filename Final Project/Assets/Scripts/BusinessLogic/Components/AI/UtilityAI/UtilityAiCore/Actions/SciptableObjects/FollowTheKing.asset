@@ -15,4 +15,3 @@ MonoBehaviour:
   Name: FOLLOWTHEKING
   considerations:
   - {fileID: 11400000, guid: dd7651fca06d597478fb2690b1a57324, type: 2}
-  - {fileID: 11400000, guid: 0a81562f58948874cbd9558845f46261, type: 2}

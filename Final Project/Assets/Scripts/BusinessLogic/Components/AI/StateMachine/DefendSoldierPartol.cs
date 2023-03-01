@@ -11,7 +11,7 @@ public class DefendSoldierPartol : StateMachineBehaviour
     private List<Transform> walkingPlaces;
     private static readonly int enemyALayerMask = 1 << 7;
     private Transform soldier;
-    private Soldier soldierData;
+    private DefenseSoldier soldierData;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -19,7 +19,7 @@ public class DefendSoldierPartol : StateMachineBehaviour
         agent = animator.GetComponent<NavMeshAgent>();
         walkingPlaces = GameObject.FindGameObjectsWithTag("CastleBPatrol").Select(go => go.transform).ToList();
         soldier = animator.GetComponent<Transform>();
-        soldierData = animator.GetComponent<Soldier>();
+        soldierData = animator.GetComponent<DefenseSoldier>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -40,7 +40,7 @@ public class DefendSoldierPartol : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent.SetDestination(soldierData.Enemy.transform.position);
+        agent.SetDestination(soldierData.data.Enemy.transform.position);
         animator.ResetTrigger("RunToEnemy");
     }
 
@@ -85,13 +85,13 @@ public class DefendSoldierPartol : StateMachineBehaviour
                 distance = currentEnemyDistance;
             }
         }
-        soldierData.Enemy = colliders[closestEnemyIndex].gameObject;
+        soldierData.data.Enemy = colliders[closestEnemyIndex].gameObject;
         return distance;
     }
 
     private bool EnemyIsAlive(GameObject enemy)
     {
-        var lives = enemy.GetComponent<Soldier>().Health;
+        var lives = enemy.GetComponent<OffenceSoldier>().data.Health;
         if(lives > 0 )
         {
             return true;

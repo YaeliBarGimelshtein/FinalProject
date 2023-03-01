@@ -8,7 +8,7 @@ namespace UtilityAI.Core
 {
     public class SoldierController : Character, IOfenceSoldierBehaviour
     {
-        public Soldier soldierData { get; protected set; }
+        public DefenseSoldier soldierData { get; protected set; }
         public MoveController mover { get; set; }
         public AIBrain aiBrain { get; set; }
         public Action[] actionsAvailable;
@@ -23,7 +23,7 @@ namespace UtilityAI.Core
         {
             mover = GetComponent<MoveController>();
             aiBrain = GetComponent<AIBrain>();
-            soldierData = GetComponent<Soldier>();
+            soldierData = GetComponent<DefenseSoldier>();
             animator = GetComponent<Animator>();
             finishExecute = true;
         }
@@ -69,13 +69,13 @@ namespace UtilityAI.Core
                     distance = currentEnemyDistance;
                 }
             }
-            soldierData.Enemy = colliders[closestEnemyIndex].gameObject;
+            soldierData.data.Enemy = colliders[closestEnemyIndex].gameObject;
             return distance;
         }
 
         public float GetSoldierHealth()
         {
-            return soldierData.Health;
+            return soldierData.data.Health;
         }
 
         public float GetKingDistance()
@@ -93,7 +93,7 @@ namespace UtilityAI.Core
 
         public void Defend()
         {
-            gameObject.transform.LookAt(soldierData.Enemy.transform);
+            gameObject.transform.LookAt(soldierData.data.Enemy.transform);
             animator.SetTrigger("Defend");
             soldierData.TakeAHit();
         }
@@ -110,8 +110,8 @@ namespace UtilityAI.Core
 
         public void ProtectTheKing()
         {
-            gameObject.transform.LookAt(soldierData.Enemy.transform);
-            mover.MoveTo(soldierData.Enemy.transform.position);
+            gameObject.transform.LookAt(soldierData.data.Enemy.transform);
+            mover.MoveTo(soldierData.data.Enemy.transform.position);
             finishExecute = true;
         }
 
@@ -126,7 +126,7 @@ namespace UtilityAI.Core
 
         IEnumerator AttackCoroutine()
         {
-            if(soldierData.Enemy != null)
+            if(soldierData.data.Enemy != null)
             {
                 animator.SetTrigger("Attacking");
                 yield return new WaitForSeconds(2);

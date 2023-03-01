@@ -6,17 +6,17 @@ using UnityEngine.AI;
 public class DefendSoldierDefend : StateMachineBehaviour
 {
     private NavMeshAgent agent;
-    private Soldier soldierData;
-    private Soldier enemy;
+    private DefenseSoldier soldierData;
+    private OffenceSoldier enemy;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
-        soldierData = animator.GetComponent<Soldier>();
-        if (soldierData.Enemy != null)
+        soldierData = animator.GetComponent<DefenseSoldier>();
+        if (soldierData.data.Enemy != null)
         {
-            enemy = soldierData.Enemy.GetComponent<Soldier>();
+            enemy = soldierData.data.Enemy.GetComponent<OffenceSoldier>();
         }
         agent.isStopped = true;
     }
@@ -25,7 +25,7 @@ public class DefendSoldierDefend : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 
-        if (enemy.Health > 0)// Maybe another soldier attacked our enemy while we were defending
+        if (enemy.data.Health > 0)// Maybe another soldier attacked our enemy while we were defending
         {
             animator.SetTrigger("Attack");
         }else

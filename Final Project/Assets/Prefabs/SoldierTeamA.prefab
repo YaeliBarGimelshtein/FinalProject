@@ -710,7 +710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b2b1281330518a242a4acfcb80a8d433, type: 3}
       propertyPath: m_Name
-      value: Paladin WProp J Nordstrom@Swagger Walk
+      value: SoldierTeamA
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b2b1281330518a242a4acfcb80a8d433, type: 3}
       propertyPath: m_Layer
@@ -847,6 +847,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b2b1281330518a242a4acfcb80a8d433, type: 3}
   m_PrefabInstance: {fileID: 718119300021261888}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &4430412113739364666
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375536423653321489}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &1432336250
 Animator:
   serializedVersion: 4
@@ -943,7 +956,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60722328f4c90124b919144b7e711ef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7698022546542172158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375536423653321489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbbe36e18a8a41d4b976f766cd588efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   healthBar: {fileID: 1017357037}
+  data: {fileID: 0}
 --- !u!4 &1044268657404015019 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b2b1281330518a242a4acfcb80a8d433, type: 3}
