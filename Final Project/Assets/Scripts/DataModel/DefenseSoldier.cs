@@ -5,20 +5,25 @@ using UnityEngine;
 public class DefenseSoldier : Character
 {
     public Bar healthBar;
-    public SoldierData data;
+    public SoldierInformation information;
     private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        data = GetComponent<SoldierData>();
-        data.Health = 5;
+        information = new SoldierInformation(5);
+
         if (healthBar != null)
         {
-            healthBar.SetMaxBar(data.Health);
+            healthBar.SetMaxBar(information.GetHealth());
         }
-        data.IsAttacking = false;
+
         animator = GetComponent<Animator>();
+
+        Debug.Log("health is " + information.GetHealth());
+        Debug.Log("data.IsAttacking is " + information.GetIsAttacking());
+        if(information.GetEnemy() == null)
+            Debug.Log("data.enemy is null");
     }
 
     // Update is called once per frame
@@ -29,25 +34,25 @@ public class DefenseSoldier : Character
 
     public void MakeAnAttack()
     {
-        data.IsAttacking = true;
-        if (data.Enemy != null)
+        information.SetIsAttacking(true);
+        if (information.GetEnemy() != null)
         {
-            OffenceSoldier enemySoldier = data.Enemy.GetComponent<OffenceSoldier>();
+            OffenceSoldier enemySoldier = information.GetEnemy().GetComponent<OffenceSoldier>();
             enemySoldier.TakeAHit();
             Debug.Log("made a hit!");
         }
-        data.IsAttacking = false;
+        information.SetIsAttacking(false);
     }
 
     public void TakeAHit()
     {
-        data.Health -= 1;
+        information.SetHealth(information.GetHealth() - 1);
         if (healthBar != null)
         {
-            healthBar.SetCurrentBar(data.Health);
+            healthBar.SetCurrentBar(information.GetHealth());
         }
-        Debug.Log("took a hit! have " + data.Health + " lives");
-        if (data.Health == 0)
+        Debug.Log("took a hit! have " + information.GetHealth() + " lives");
+        if (information.GetHealth() == 0)
         {
             Debug.Log("DEAD");
             //Destroy(gameObject);

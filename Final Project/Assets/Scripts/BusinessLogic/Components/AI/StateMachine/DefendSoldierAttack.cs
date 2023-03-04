@@ -14,9 +14,9 @@ public class DefendSoldierAttack : StateMachineBehaviour
     {
         agent = animator.GetComponent<NavMeshAgent>();
         soldierData = animator.GetComponent<DefenseSoldier>();
-        if(soldierData.data.Enemy != null)
+        if(soldierData.information.GetEnemy() != null)
         {
-            enemy = soldierData.data.Enemy.GetComponent<OffenceSoldier>();
+            enemy = soldierData.information.GetEnemy().GetComponent<OffenceSoldier>();
         }
         agent.isStopped = true;
     }
@@ -30,7 +30,7 @@ public class DefendSoldierAttack : StateMachineBehaviour
             animator.SetTrigger("Defend");
         }
         */
-        if(enemy.data.Health == 0)
+        if(!enemy.information.GetIsAlive())
         {
             animator.SetTrigger("Patrol");
         }

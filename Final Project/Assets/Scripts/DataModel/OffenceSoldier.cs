@@ -5,19 +5,18 @@ using UnityEngine;
 public class OffenceSoldier : Character
 {
     public Bar healthBar;
-    public SoldierData data;
+    public SoldierInformation information;
     private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        data = GetComponent<SoldierData>();
-        data.Health = 5;
+        information = new SoldierInformation(5);
+        
         if (healthBar != null)
         {
-            healthBar.SetMaxBar(data.Health);
+            healthBar.SetMaxBar(information.GetHealth());
         }
-        data.IsAttacking = false;
         animator = GetComponent<Animator>();
     }
 
@@ -29,25 +28,25 @@ public class OffenceSoldier : Character
 
     public void MakeAnAttack()
     {
-        data.IsAttacking = true;
-        if (data.Enemy != null)
+        information.SetIsAttacking(true);
+        if (information.GetEnemy() != null)
         {
-            DefenseSoldier enemySoldier = data.Enemy.GetComponent<DefenseSoldier>();
+            DefenseSoldier enemySoldier = information.GetEnemy().GetComponent<DefenseSoldier>();
             enemySoldier.TakeAHit();
             Debug.Log("made a hit!");
         }
-        data.IsAttacking = false;
+        information.SetIsAttacking(false);
     }
 
     public void TakeAHit()
     {
-        data.Health -= 1;
+        information.SetHealth(information.GetHealth() - 1);
         if (healthBar != null)
         {
-            healthBar.SetCurrentBar(data.Health);
+            healthBar.SetCurrentBar(information.GetHealth());
         }
-        Debug.Log("took a hit! have " + data.Health + " lives");
-        if (data.Health == 0)
+        Debug.Log("took a hit! have " + information.GetHealth() + " lives");
+        if (information.GetHealth() == 0)
         {
             Debug.Log("DEAD");
             //Destroy(gameObject);
@@ -55,7 +54,7 @@ public class OffenceSoldier : Character
         }
         else
         {
-            animator.SetTrigger("Defend"); // Soldier took a hit and is now defending himself
+            animator.SetTrigger("Defending"); // Soldier took a hit and is now defending himself
         }
     }
 

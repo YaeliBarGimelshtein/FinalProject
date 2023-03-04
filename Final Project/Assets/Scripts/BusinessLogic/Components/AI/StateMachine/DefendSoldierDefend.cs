@@ -14,9 +14,9 @@ public class DefendSoldierDefend : StateMachineBehaviour
     {
         agent = animator.GetComponent<NavMeshAgent>();
         soldierData = animator.GetComponent<DefenseSoldier>();
-        if (soldierData.data.Enemy != null)
+        if (soldierData.information.GetEnemy() != null)
         {
-            enemy = soldierData.data.Enemy.GetComponent<OffenceSoldier>();
+            enemy = soldierData.information.GetEnemy().GetComponent<OffenceSoldier>();
         }
         agent.isStopped = true;
     }
@@ -25,7 +25,7 @@ public class DefendSoldierDefend : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 
-        if (enemy.data.Health > 0)// Maybe another soldier attacked our enemy while we were defending
+        if (enemy.information.GetHealth() > 0)// Maybe another soldier attacked our enemy while we were defending
         {
             animator.SetTrigger("Attack");
         }else

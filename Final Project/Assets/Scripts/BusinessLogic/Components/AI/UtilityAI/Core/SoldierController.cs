@@ -69,13 +69,13 @@ namespace UtilityAI.Core
                     distance = currentEnemyDistance;
                 }
             }
-            soldierData.data.Enemy = colliders[closestEnemyIndex].gameObject;
+            soldierData.information.SetEnemy(colliders[closestEnemyIndex].gameObject);
             return distance;
         }
 
         public float GetSoldierHealth()
         {
-            return soldierData.data.Health;
+            return soldierData.information.GetHealth();
         }
 
         public float GetKingDistance()
@@ -93,8 +93,8 @@ namespace UtilityAI.Core
 
         public void Defend()
         {
-            gameObject.transform.LookAt(soldierData.data.Enemy.transform);
-            animator.SetTrigger("Defend");
+            gameObject.transform.LookAt(soldierData.information.GetEnemy().transform);
+            animator.SetTrigger("Defending");
             soldierData.TakeAHit();
         }
 
@@ -110,8 +110,8 @@ namespace UtilityAI.Core
 
         public void ProtectTheKing()
         {
-            gameObject.transform.LookAt(soldierData.data.Enemy.transform);
-            mover.MoveTo(soldierData.data.Enemy.transform.position);
+            gameObject.transform.LookAt(soldierData.information.GetEnemy().transform);
+            mover.MoveTo(soldierData.information.GetEnemy().transform.position);
             finishExecute = true;
         }
 
@@ -126,7 +126,7 @@ namespace UtilityAI.Core
 
         IEnumerator AttackCoroutine()
         {
-            if(soldierData.data.Enemy != null)
+            if(soldierData.information.GetEnemy() != null)
             {
                 animator.SetTrigger("Attacking");
                 yield return new WaitForSeconds(2);

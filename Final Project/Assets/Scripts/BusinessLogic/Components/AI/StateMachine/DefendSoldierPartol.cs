@@ -40,7 +40,7 @@ public class DefendSoldierPartol : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent.SetDestination(soldierData.data.Enemy.transform.position);
+        agent.SetDestination(soldierData.information.GetEnemy().transform.position);
         animator.ResetTrigger("RunToEnemy");
     }
 
@@ -85,17 +85,12 @@ public class DefendSoldierPartol : StateMachineBehaviour
                 distance = currentEnemyDistance;
             }
         }
-        soldierData.data.Enemy = colliders[closestEnemyIndex].gameObject;
+        soldierData.information.SetEnemy(colliders[closestEnemyIndex].gameObject);
         return distance;
     }
 
     private bool EnemyIsAlive(GameObject enemy)
     {
-        var lives = enemy.GetComponent<OffenceSoldier>().data.Health;
-        if(lives > 0 )
-        {
-            return true;
-        }
-        return false;
+       return enemy.GetComponent<OffenceSoldier>().information.GetIsAlive();
     }
 }

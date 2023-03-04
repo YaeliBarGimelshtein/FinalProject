@@ -39,7 +39,7 @@ public class DefendSoldierRunToEnemy : StateMachineBehaviour
     {
         if(soldierData != null)
         {
-            var distance = Vector3.Distance(soldier.position, soldierData.data.Enemy.transform.position);
+            var distance = Vector3.Distance(soldier.position, soldierData.information.GetEnemy().transform.position);
             if(distance <= 3)
             {
                 return true;
