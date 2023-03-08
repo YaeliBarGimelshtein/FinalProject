@@ -40,6 +40,5 @@ public class DefendSoldierAttack : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent.isStopped = false;
-        agent.speed -= 2;
     }
 }
