@@ -17,13 +17,7 @@ public class DefenseSoldier : Character
         {
             healthBar.SetMaxBar(information.GetHealth());
         }
-
         animator = GetComponent<Animator>();
-
-        Debug.Log("health is " + information.GetHealth());
-        Debug.Log("data.IsAttacking is " + information.GetIsAttacking());
-        if(information.GetEnemy() == null)
-            Debug.Log("data.enemy is null");
     }
 
     // Update is called once per frame

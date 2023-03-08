@@ -8,7 +8,7 @@ namespace UtilityAI.Core
 {
     public class SoldierController : Character, IOfenceSoldierBehaviour
     {
-        public DefenseSoldier soldierData { get; protected set; }
+        public OffenceSoldier soldierData { get; protected set; }
         public MoveController mover { get; set; }
         public AIBrain aiBrain { get; set; }
         public Action[] actionsAvailable;
@@ -23,7 +23,7 @@ namespace UtilityAI.Core
         {
             mover = GetComponent<MoveController>();
             aiBrain = GetComponent<AIBrain>();
-            soldierData = GetComponent<DefenseSoldier>();
+            soldierData = GetComponent<OffenceSoldier>();
             animator = GetComponent<Animator>();
             finishExecute = true;
         }
@@ -63,7 +63,7 @@ namespace UtilityAI.Core
             for (int i = 0; i < colliders.Length; i++)
             {
                 float currentEnemyDistance = Vector3.Distance(transform.position, colliders[i].transform.position);
-                if (currentEnemyDistance < distance)
+                if (currentEnemyDistance < distance && enemyIsAlive(colliders[i].gameObject))
                 {
                     closestEnemyIndex = i;
                     distance = currentEnemyDistance;
@@ -81,6 +81,12 @@ namespace UtilityAI.Core
         public float GetKingDistance()
         {
             return Vector3.Distance(transform.position, king.transform.position);
+        }
+
+        private bool enemyIsAlive(GameObject enemyObject)
+        {
+            Debug.Log("is enemy dead = " + enemyObject.GetComponent<DefenseSoldier>().information.GetIsAlive());
+            return enemyObject.GetComponent<DefenseSoldier>().information.GetIsAlive();
         }
         #endregion
 
@@ -100,38 +106,26 @@ namespace UtilityAI.Core
 
         public void Attack()
         {
-            StartCoroutine(AttackCoroutine());
+            if (soldierData.information.GetEnemy() != null)
+            {
+                animator.SetTrigger("Attacking");
+                soldierData.MakeAnAttack();
+            }
+            finishExecute = true;
         }
 
         public void FollowTheKing()
         {
-            StartCoroutine(FollowTheKingCoroutine());
+            gameObject.transform.LookAt(king.transform);
+            animator.SetTrigger("Walking");
+            mover.MoveTo(king.transform.position);
+            finishExecute = true;
         }
 
         public void ProtectTheKing()
         {
             gameObject.transform.LookAt(soldierData.information.GetEnemy().transform);
             mover.MoveTo(soldierData.information.GetEnemy().transform.position);
-            finishExecute = true;
-        }
-
-        IEnumerator FollowTheKingCoroutine()
-        {
-            gameObject.transform.LookAt(king.transform);
-            animator.SetTrigger("Walking");
-            yield return new WaitForSeconds(2);
-            mover.MoveTo(king.transform.position);
-            finishExecute = true;
-        }
-
-        IEnumerator AttackCoroutine()
-        {
-            if(soldierData.information.GetEnemy() != null)
-            {
-                animator.SetTrigger("Attacking");
-                yield return new WaitForSeconds(2);
-                soldierData.MakeAnAttack();
-            }
             finishExecute = true;
         }
         #endregion
