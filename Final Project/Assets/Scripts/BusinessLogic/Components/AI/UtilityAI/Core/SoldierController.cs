@@ -85,7 +85,7 @@ namespace UtilityAI.Core
 
         private bool enemyIsAlive(GameObject enemyObject)
         {
-            Debug.Log("is enemy dead = " + enemyObject.GetComponent<DefenseSoldier>().information.GetIsAlive());
+            Debug.Log("is enemy alive = " + enemyObject.GetComponent<DefenseSoldier>().information.GetIsAlive());
             return enemyObject.GetComponent<DefenseSoldier>().information.GetIsAlive();
         }
         #endregion
@@ -106,12 +106,7 @@ namespace UtilityAI.Core
 
         public void Attack()
         {
-            if (soldierData.information.GetEnemy() != null)
-            {
-                animator.SetTrigger("Attacking");
-                soldierData.MakeAnAttack();
-            }
-            finishExecute = true;
+            StartCoroutine(AttackCoroutine());
         }
 
         public void FollowTheKing()
@@ -126,6 +121,17 @@ namespace UtilityAI.Core
         {
             gameObject.transform.LookAt(soldierData.information.GetEnemy().transform);
             mover.MoveTo(soldierData.information.GetEnemy().transform.position);
+            finishExecute = true;
+        }
+
+        IEnumerator AttackCoroutine()
+        {
+            if (soldierData.information.GetEnemy() != null)
+            {
+                animator.SetTrigger("Attacking");
+                yield return new WaitForSeconds(2);
+                soldierData.MakeAnAttack();
+            }
             finishExecute = true;
         }
         #endregion
