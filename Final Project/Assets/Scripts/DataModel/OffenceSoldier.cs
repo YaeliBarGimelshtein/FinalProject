@@ -33,7 +33,7 @@ public class OffenceSoldier : Character
         {
             DefenseSoldier enemySoldier = information.GetEnemy().GetComponent<DefenseSoldier>();
             enemySoldier.TakeAHit();
-            Debug.Log("made a hit!");
+            Debug.Log("Offence Soldier: made a hit!");
         }
         information.SetIsAttacking(false);
     }
@@ -45,10 +45,10 @@ public class OffenceSoldier : Character
         {
             healthBar.SetCurrentBar(information.GetHealth());
         }
-        Debug.Log("took a hit! have " + information.GetHealth() + " lives");
+        Debug.Log("Offence Soldier: took a hit! have " + information.GetHealth() + " lives");
         if (information.GetHealth() == 0)
         {
-            Debug.Log("DEAD");
+            Debug.Log("Offence Soldier: DEAD");
             //Destroy(gameObject);
             animator.SetTrigger("Dead");
         }

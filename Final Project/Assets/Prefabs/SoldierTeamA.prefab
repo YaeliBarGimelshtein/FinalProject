@@ -891,7 +891,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2
+  m_Speed: 0.8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -945,6 +945,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: edb9c98de585c034cbdc2c3ec93e2a95, type: 2}
   homePosition: {fileID: 0}
   king: {fileID: 0}
+--- !u!114 &3171260808420070313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375536423653321489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e63f25dc1d9724faf1645c17d720fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7698022546542172158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -958,18 +970,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1017357037}
---- !u!114 &3171260808420070313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 375536423653321489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0e63f25dc1d9724faf1645c17d720fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1044268657404015019 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b2b1281330518a242a4acfcb80a8d433, type: 3}

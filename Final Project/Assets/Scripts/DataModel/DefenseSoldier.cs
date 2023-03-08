@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DefenseSoldier : Character
 {
     public Bar healthBar;
     public SoldierInformation information;
     private Animator animator;
+    private NavMeshAgent agent;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,7 @@ public class DefenseSoldier : Character
             healthBar.SetMaxBar(information.GetHealth());
         }
         animator = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -33,7 +36,7 @@ public class DefenseSoldier : Character
         {
             OffenceSoldier enemySoldier = information.GetEnemy().GetComponent<OffenceSoldier>();
             enemySoldier.TakeAHit();
-            Debug.Log("made a hit!");
+            Debug.Log("Defence soldier: made a hit!");
         }
         information.SetIsAttacking(false);
     }
@@ -45,12 +48,13 @@ public class DefenseSoldier : Character
         {
             healthBar.SetCurrentBar(information.GetHealth());
         }
-        Debug.Log("took a hit! have " + information.GetHealth() + " lives");
+        Debug.Log("Defence soldier: took a hit! have " + information.GetHealth() + " lives");
         if (information.GetHealth() == 0)
         {
-            Debug.Log("DEAD");
+            Debug.Log("Defence soldier: DEAD");
             //Destroy(gameObject);
             animator.SetTrigger("Dead");
+            agent.isStopped = true;
         }
         else
         {
