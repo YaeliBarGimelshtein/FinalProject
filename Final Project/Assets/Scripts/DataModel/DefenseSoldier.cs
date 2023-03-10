@@ -43,22 +43,29 @@ public class DefenseSoldier : Character
 
     public void TakeAHit()
     {
-        information.SetHealth(information.GetHealth() - 1);
-        if (healthBar != null)
+        if (!information.GetIsDefending())
         {
-            healthBar.SetCurrentBar(information.GetHealth());
-        }
-        Debug.Log("Defence soldier: took a hit! have " + information.GetHealth() + " lives");
-        if (information.GetHealth() == 0)
-        {
-            Debug.Log("Defence soldier: DEAD");
-            //Destroy(gameObject);
-            animator.SetTrigger("Dead");
-            agent.isStopped = true;
+            information.SetHealth(information.GetHealth() - 1);
+            if (healthBar != null)
+            {
+                healthBar.SetCurrentBar(information.GetHealth());
+            }
+            Debug.Log("Defence soldier: took a hit! have " + information.GetHealth() + " lives");
+            if (information.GetHealth() == 0)
+            {
+                Debug.Log("Defence soldier: DEAD");
+                //Destroy(gameObject);
+                animator.SetTrigger("Dead");
+                agent.isStopped = true;
+            }
+            else
+            {
+                animator.SetTrigger("Defend"); // Soldier took a hit and is now defending himself
+            }
         }
         else
         {
-            animator.SetTrigger("Defend"); // Soldier took a hit and is now defending himself
+            animator.SetTrigger("Defend");
         }
     }
 

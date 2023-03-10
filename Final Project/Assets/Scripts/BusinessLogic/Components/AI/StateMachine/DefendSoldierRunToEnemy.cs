@@ -19,6 +19,7 @@ public class DefendSoldierRunToEnemy : StateMachineBehaviour
         soldierData = animator.GetComponent<DefenseSoldier>();
         agent.speed += 2;
         tries = 0;
+        soldierData.information.SetIsDefending(false);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -28,10 +29,10 @@ public class DefendSoldierRunToEnemy : StateMachineBehaviour
         {
             animator.SetTrigger("Attack");
         }
-        else if(tries == 5)
+       /* else if(tries == 5)
         {
             animator.SetTrigger("Patrol");
-        }
+        }*/
     }
     
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

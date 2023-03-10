@@ -20,6 +20,7 @@ public class DefendSoldierPartol : StateMachineBehaviour
         walkingPlaces = GameObject.FindGameObjectsWithTag("CastleBPatrol").Select(go => go.transform).ToList();
         soldier = animator.GetComponent<Transform>();
         soldierData = animator.GetComponent<DefenseSoldier>();
+        soldierData.information.SetIsDefending(false);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

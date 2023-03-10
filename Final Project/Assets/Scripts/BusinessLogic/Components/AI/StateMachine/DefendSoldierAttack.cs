@@ -19,21 +19,34 @@ public class DefendSoldierAttack : StateMachineBehaviour
             enemy = soldierData.information.GetEnemy().GetComponent<OffenceSoldier>();
         }
         agent.isStopped = true;
+        soldierData.information.SetIsDefending(false);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
-        /*if(enemy.isAttacking)
-        {
-            animator.SetTrigger("Defend");
-        }
-        */
-        if(!enemy.information.GetIsAlive())
+        if (!enemy.information.GetIsAlive())
         {
             animator.SetTrigger("Patrol");
         }
+
+        int randomInt = Random.Range(0,3); // generate a random integer
+
+        if (!stateInfo.IsName("Attack") && randomInt == 0)
+        {
+            animator.SetTrigger("Attack");
+        }
+        else if (!stateInfo.IsName("Attack Jump Slash") && randomInt == 1)
+        {
+            animator.SetTrigger("AttackJump");
+        }
+        else if (!stateInfo.IsName("Attack Impact 1") && randomInt == 2)
+        {
+            animator.SetTrigger("AttackImpact");
+        }
+       
+        
+        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

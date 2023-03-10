@@ -9,6 +9,7 @@ public class SoldierInformation
     private List<Weapon> Weapons;
     private GameObject Enemy;
     private bool IsAttacking;
+    private bool IsDefending;
 
     public SoldierInformation(int health)
     {
@@ -17,6 +18,7 @@ public class SoldierInformation
         IsAttacking = false;
         Weapons = new List<Weapon>();
         Enemy = null;
+        IsDefending = false;
     }
 
     public bool GetIsAlive()
@@ -43,6 +45,11 @@ public class SoldierInformation
         return IsAttacking;
     }
 
+    public bool GetIsDefending()
+    {
+        return IsDefending;
+    }
+
     public void SetIsAlive(bool isAlive)
     {
         IsAlive = isAlive;
@@ -64,6 +71,11 @@ public class SoldierInformation
 
     public void SetIsAttacking(bool isAttacking)
     {
-        IsAttacking = isAttacking;
+        this.IsAttacking = isAttacking;
+    }
+
+    public void SetIsDefending(bool IsDefending)
+    {
+        this.IsDefending = IsDefending;
     }
 }

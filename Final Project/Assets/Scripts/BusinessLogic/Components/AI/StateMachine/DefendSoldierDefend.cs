@@ -21,17 +21,18 @@ public class DefendSoldierDefend : StateMachineBehaviour
         }
         agent.isStopped = true;
         counter = 0;
+        soldierData.information.SetIsDefending(true);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        counter++;
-        if (enemy.information.GetIsAlive() && counter == 2)
+        //counter++; //What is this counter for
+        if (enemy.information.GetIsAlive()) // && counter == 2
         { 
             animator.SetTrigger("Attack");
         }
-        else if(!enemy.information.GetIsAlive())
+        else
         {
             animator.SetTrigger("Patrol");
         }
