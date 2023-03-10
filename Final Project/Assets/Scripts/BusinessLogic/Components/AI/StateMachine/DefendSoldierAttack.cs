@@ -19,7 +19,6 @@ public class DefendSoldierAttack : StateMachineBehaviour
             enemy = soldierData.information.GetEnemy().GetComponent<OffenceSoldier>();
         }
         agent.isStopped = true;
-        soldierData.information.SetIsDefending(false);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -30,7 +29,7 @@ public class DefendSoldierAttack : StateMachineBehaviour
             animator.SetTrigger("Patrol");
         }
 
-        int randomInt = Random.Range(0,3); // generate a random integer
+        int randomInt = Random.Range(0,2); // generate a random integer
 
         if (!stateInfo.IsName("Attack") && randomInt == 0)
         {
@@ -44,7 +43,7 @@ public class DefendSoldierAttack : StateMachineBehaviour
         {
             animator.SetTrigger("AttackImpact");
         }
-       
+        
         
         
     }

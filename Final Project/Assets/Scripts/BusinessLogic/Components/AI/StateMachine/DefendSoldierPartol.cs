@@ -20,7 +20,6 @@ public class DefendSoldierPartol : StateMachineBehaviour
         walkingPlaces = GameObject.FindGameObjectsWithTag("CastleBPatrol").Select(go => go.transform).ToList();
         soldier = animator.GetComponent<Transform>();
         soldierData = animator.GetComponent<DefenseSoldier>();
-        soldierData.information.SetIsDefending(false);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -32,9 +31,13 @@ public class DefendSoldierPartol : StateMachineBehaviour
         }
 
         var enemyDistance = GetEnemyDistance();
-        if (enemyDistance <= 10f && enemyDistance != -1)
+        if (enemyDistance <= 10f && enemyDistance > 0)
         {
             animator.SetTrigger("RunToEnemy");
+        }
+        else if(enemyDistance == 0)
+        {
+            animator.SetTrigger("Attack");
         }
     }
 
@@ -42,7 +45,7 @@ public class DefendSoldierPartol : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent.SetDestination(soldierData.information.GetEnemy().transform.position);
-        animator.ResetTrigger("RunToEnemy");
+        //animator.ResetTrigger("RunToEnemy");
     }
 
     private void Patrol()

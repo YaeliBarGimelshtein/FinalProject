@@ -63,10 +63,7 @@ public class DefenseSoldier : Character
                 animator.SetTrigger("Defend"); // Soldier took a hit and is now defending himself
             }
         }
-        else
-        {
-            animator.SetTrigger("Defend");
-        }
+        
     }
 
     private void OnDrawGizmos()

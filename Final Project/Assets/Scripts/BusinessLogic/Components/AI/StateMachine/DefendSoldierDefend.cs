@@ -42,5 +42,6 @@ public class DefendSoldierDefend : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent.isStopped = false;
+        soldierData.information.SetIsDefending(false);
     }
 }
