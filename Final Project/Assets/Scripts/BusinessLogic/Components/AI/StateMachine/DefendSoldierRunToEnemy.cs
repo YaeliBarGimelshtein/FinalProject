@@ -17,7 +17,6 @@ public class DefendSoldierRunToEnemy : StateMachineBehaviour
         soldier = animator.GetComponent<Transform>();
         soldierData = animator.GetComponent<DefenseSoldier>();
         agent.speed += 2;
-        tries = 0;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
