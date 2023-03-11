@@ -38,9 +38,8 @@ public class DefenseSoldier : Character
     IEnumerator AttackCoroutine()
     {
         Debug.Log("Defence soldier: starting AttackCoroutine");
-        information.SetIsAttacking(true);
         SoldierController enemySoldier = information.GetEnemy().GetComponent<SoldierController>();
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         if(enemySoldier.information.GetIsAlive())
         {
             enemySoldier.TakeAHit();
@@ -59,6 +58,7 @@ public class DefenseSoldier : Character
             {
                 healthBar.SetCurrentBar(information.GetHealth());
             }
+            animator.SetTrigger("Defend");
         }
         
         Debug.Log("Defence soldier: took a hit! have " + information.GetHealth() + " lives");
@@ -71,8 +71,16 @@ public class DefenseSoldier : Character
         }
     }
 
-    private void OnDrawGizmos()
+    public void Defend()
     {
-        Gizmos.DrawWireSphere(gameObject.transform.position, 10f);
+        StartCoroutine(DefendCoroutine());
+    }
+
+    IEnumerator DefendCoroutine()
+    {
+        Debug.Log("Defence soldier: starting DefendCoroutine");
+        yield return new WaitForSeconds(2f);
+        information.SetIsDefending(false);
+        Debug.Log("Defence soldier: finished DefendCoroutine");
     }
 }

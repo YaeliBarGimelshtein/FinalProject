@@ -22,6 +22,7 @@ public class DefendSoldierAttack : StateMachineBehaviour
         }
         agent.isStopped = true;
         defendSoldierTransform = animator.transform;
+        soldierData.information.SetIsAttacking(true);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -32,14 +33,9 @@ public class DefendSoldierAttack : StateMachineBehaviour
         {
             animator.SetTrigger("Patrol");
         }
-        else if(enemy.information.GetIsAttacking())
+        else 
         {
-            animator.SetTrigger("Defend");
-        }
-        else if(!soldierData.information.GetIsAttacking())
-        {
-            Debug.Log("DefendSoldierAttack is in middle of attack is " + soldierData.information.GetIsAttacking());
-            soldierData.MakeAnAttack();
+            //soldierData.MakeAnAttack();
             int randomInt = Random.Range(0, 2); // generate a random integer
 
             if (!stateInfo.IsName("Attack") && randomInt == 0)

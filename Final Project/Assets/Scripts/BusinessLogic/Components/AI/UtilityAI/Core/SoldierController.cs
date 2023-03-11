@@ -69,7 +69,7 @@ namespace UtilityAI.Core
 
         private float GetClosestEnemy(Collider[] colliders)
         {
-            float distance = 10f;
+            float distance = 11f;
             int closestEnemyIndex = 0;
 
             for (int i = 0; i < colliders.Length; i++)
@@ -109,6 +109,11 @@ namespace UtilityAI.Core
             }
             return information.GetEnemy().GetComponent<DefenseSoldier>().information.GetIsAttacking();
         }
+
+        public bool IsFallingBack()
+        {
+            return information.GetIsFallingBack();
+        }
         #endregion
 
         #region IOfenceSoldierBehaviour
@@ -123,11 +128,12 @@ namespace UtilityAI.Core
 
         public void Defend()
         {
-            information.SetIsDefending(true);
-            Debug.Log("performing best action = Defend");
-            gameObject.transform.LookAt(information.GetEnemy().transform);
-            animator.SetTrigger("Defending");
-            finishExecute = true;
+            //information.SetIsDefending(true);
+            //Debug.Log("performing best action = Defend");
+            //gameObject.transform.LookAt(information.GetEnemy().transform);
+            //animator.SetTrigger("Defending");
+            //finishExecute = true;
+            StartCoroutine(DefendCoroutine());
         }
 
         public void Attack()
@@ -201,12 +207,12 @@ namespace UtilityAI.Core
             if(!information.GetIsDefending())
             {
                 information.SetHealth(information.GetHealth() - 1);
+                if (healthBar != null)
+                {
+                    healthBar.SetCurrentBar(information.GetHealth());
+                }
             }
             
-            if (healthBar != null)
-            {
-                healthBar.SetCurrentBar(information.GetHealth());
-            }
             Debug.Log("Offence Soldier: took a hit! have " + information.GetHealth() + " lives");
             if (information.GetHealth() == 0)
             {

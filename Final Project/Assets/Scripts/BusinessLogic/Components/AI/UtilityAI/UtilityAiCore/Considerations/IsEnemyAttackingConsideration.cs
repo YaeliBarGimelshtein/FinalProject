@@ -10,8 +10,9 @@ namespace UtilityAI.Considerations
     {
         public override float ScoreConsideration(SoldierController npc)
         {
-            bool attack = npc.EnemyAttacking();
-            if(attack)
+            bool enemyAttack = npc.EnemyAttacking();
+            bool isFallingBack = npc.IsFallingBack();
+            if(enemyAttack && !isFallingBack)
             {
                 return 1;
             }

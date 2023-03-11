@@ -29,6 +29,11 @@ public class DefendSoldierDefend : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         defendSoldierTransform.LookAt(enemy.transform);
+        soldierData.Defend();
+        if(!soldierData.information.GetIsAlive())
+        {
+            animator.SetTrigger("Dead");
+        }
         if (enemy.information.GetIsAlive())
         { 
             animator.SetTrigger("Attack");
