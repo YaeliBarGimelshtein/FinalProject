@@ -34,7 +34,7 @@ public class DefendSoldierDefend : StateMachineBehaviour
         {
             animator.SetTrigger("Dead");
         }
-        if (enemy.information.GetIsAlive())
+        else if (enemy.information.GetIsAlive())
         { 
             animator.SetTrigger("Attack");
         }
