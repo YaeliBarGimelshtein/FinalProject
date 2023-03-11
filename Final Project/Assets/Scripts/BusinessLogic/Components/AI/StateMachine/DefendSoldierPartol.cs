@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using UtilityAI.Core;
 
 public class DefendSoldierPartol : StateMachineBehaviour
 {
@@ -45,7 +46,6 @@ public class DefendSoldierPartol : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent.SetDestination(soldierData.information.GetEnemy().transform.position);
-        //animator.ResetTrigger("RunToEnemy");
     }
 
     private void Patrol()
@@ -95,6 +95,6 @@ public class DefendSoldierPartol : StateMachineBehaviour
 
     private bool EnemyIsAlive(GameObject enemy)
     {
-       return enemy.GetComponent<OffenceSoldier>().information.GetIsAlive();
+       return enemy.GetComponent<SoldierController>().information.GetIsAlive();
     }
 }

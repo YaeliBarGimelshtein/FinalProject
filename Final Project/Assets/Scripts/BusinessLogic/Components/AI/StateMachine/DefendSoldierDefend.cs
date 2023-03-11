@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UtilityAI.Core;
 
 public class DefendSoldierDefend : StateMachineBehaviour
 {
     private NavMeshAgent agent;
     private DefenseSoldier soldierData;
-    private OffenceSoldier enemy;
+    private SoldierController enemy;
     private int counter;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -17,7 +18,7 @@ public class DefendSoldierDefend : StateMachineBehaviour
         soldierData = animator.GetComponent<DefenseSoldier>();
         if (soldierData.information.GetEnemy() != null)
         {
-            enemy = soldierData.information.GetEnemy().GetComponent<OffenceSoldier>();
+            enemy = soldierData.information.GetEnemy().GetComponent<SoldierController>();
         }
         agent.isStopped = true;
         counter = 0;

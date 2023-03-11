@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UtilityAI.Core;
 
 public class DefenseSoldier : Character
 {
@@ -34,7 +35,7 @@ public class DefenseSoldier : Character
         information.SetIsAttacking(true);
         if (information.GetEnemy() != null)
         {
-            OffenceSoldier enemySoldier = information.GetEnemy().GetComponent<OffenceSoldier>();
+            SoldierController enemySoldier = information.GetEnemy().GetComponent<SoldierController>();
             enemySoldier.TakeAHit();
             Debug.Log("Defence soldier: made a hit!");
         }

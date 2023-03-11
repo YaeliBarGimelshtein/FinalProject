@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UtilityAI.Core;
 
 public class DefendSoldierAttack : StateMachineBehaviour
 {
     private NavMeshAgent agent;
     private DefenseSoldier soldierData;
-    private OffenceSoldier enemy;
+    private SoldierController enemy;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -16,7 +17,7 @@ public class DefendSoldierAttack : StateMachineBehaviour
         soldierData = animator.GetComponent<DefenseSoldier>();
         if(soldierData.information.GetEnemy() != null)
         {
-            enemy = soldierData.information.GetEnemy().GetComponent<OffenceSoldier>();
+            enemy = soldierData.information.GetEnemy().GetComponent<SoldierController>();
         }
         agent.isStopped = true;
     }
@@ -28,24 +29,23 @@ public class DefendSoldierAttack : StateMachineBehaviour
         {
             animator.SetTrigger("Patrol");
         }
+        else
+        {
+            int randomInt = Random.Range(0, 2); // generate a random integer
 
-        int randomInt = Random.Range(0,2); // generate a random integer
-
-        if (!stateInfo.IsName("Attack") && randomInt == 0)
-        {
-            animator.SetTrigger("Attack");
+            if (!stateInfo.IsName("Attack") && randomInt == 0)
+            {
+                animator.SetTrigger("Attack");
+            }
+            else if (!stateInfo.IsName("Attack Jump Slash") && randomInt == 1)
+            {
+                animator.SetTrigger("AttackJump");
+            }
+            else if (!stateInfo.IsName("Attack Impact 1") && randomInt == 2)
+            {
+                animator.SetTrigger("AttackImpact");
+            }
         }
-        else if (!stateInfo.IsName("Attack Jump Slash") && randomInt == 1)
-        {
-            animator.SetTrigger("AttackJump");
-        }
-        else if (!stateInfo.IsName("Attack Impact 1") && randomInt == 2)
-        {
-            animator.SetTrigger("AttackImpact");
-        }
-        
-        
-        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

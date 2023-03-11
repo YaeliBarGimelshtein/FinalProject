@@ -71,11 +71,11 @@ public class SoldierInformation
 
     public void SetIsAttacking(bool isAttacking)
     {
-        this.IsAttacking = isAttacking;
+        IsAttacking = isAttacking;
     }
 
-    public void SetIsDefending(bool IsDefending)
+    public void SetIsDefending(bool isDefending)
     {
-        this.IsDefending = IsDefending;
+        IsDefending = isDefending;
     }
 }

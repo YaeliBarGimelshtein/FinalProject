@@ -3,35 +3,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Contract.NPC;
+using UnityEngine.AI;
 
 namespace UtilityAI.Core
 {
     public class SoldierController : Character, IOfenceSoldierBehaviour
     {
-        public OffenceSoldier soldierData { get; protected set; }
-        public MoveController mover { get; set; }
         public AIBrain aiBrain { get; set; }
         public Action[] actionsAvailable;
         public Transform homePosition;
         public GameObject king;
         public Animator animator { get; set; }
+        private NavMeshAgent agent;
         public bool finishExecute { get; set; }
+        public Bar healthBar;
+        public SoldierInformation information;
         private static readonly int enemyBLayerMask = 1 << 3;
         
         // Start is called before the first frame update
         void Start()
         {
-            mover = GetComponent<MoveController>();
             aiBrain = GetComponent<AIBrain>();
-            soldierData = GetComponent<OffenceSoldier>();
             animator = GetComponent<Animator>();
+            agent = GetComponent<NavMeshAgent>();
             finishExecute = true;
+            information = new SoldierInformation(5);
+            if (healthBar != null)
+            {
+                healthBar.SetMaxBar(information.GetHealth());
+            }
         }
         
         // Update is called once per frame
         void Update()
         {
-            if(aiBrain.finishedDeciding && finishExecute)
+            if(!information.GetIsAlive())
+            {
+                agent.isStopped = true;
+                animator.SetTrigger("Dead");
+            }
+            else if(aiBrain.finishedDeciding && finishExecute)
             {
                 aiBrain.finishedDeciding = false;
                 finishExecute = false;
@@ -69,13 +80,13 @@ namespace UtilityAI.Core
                     distance = currentEnemyDistance;
                 }
             }
-            soldierData.information.SetEnemy(colliders[closestEnemyIndex].gameObject);
+            information.SetEnemy(colliders[closestEnemyIndex].gameObject);
             return distance;
         }
 
         public float GetSoldierHealth()
         {
-            return soldierData.information.GetHealth();
+            return information.GetHealth();
         }
 
         public float GetKingDistance()
@@ -94,14 +105,14 @@ namespace UtilityAI.Core
         public void Fallback()
         {
             animator.SetTrigger("Walking");
-            mover.MoveTo(homePosition.position);
+            agent.destination = homePosition.position;
         }
 
         public void Defend()
         {
-            gameObject.transform.LookAt(soldierData.information.GetEnemy().transform);
+            gameObject.transform.LookAt(information.GetEnemy().transform);
             animator.SetTrigger("Defending");
-            soldierData.TakeAHit();
+            TakeAHit();
         }
 
         public void Attack()
@@ -113,26 +124,60 @@ namespace UtilityAI.Core
         {
             gameObject.transform.LookAt(king.transform);
             animator.SetTrigger("Walking");
-            mover.MoveTo(king.transform.position);
+            agent.destination = king.transform.position;
             finishExecute = true;
         }
 
         public void ProtectTheKing()
         {
-            gameObject.transform.LookAt(soldierData.information.GetEnemy().transform);
-            mover.MoveTo(soldierData.information.GetEnemy().transform.position);
+            gameObject.transform.LookAt(information.GetEnemy().transform);
+            agent.destination = information.GetEnemy().transform.position;
             finishExecute = true;
         }
 
         IEnumerator AttackCoroutine()
         {
-            if (soldierData.information.GetEnemy() != null)
+            if (information.GetEnemy() != null)
             {
                 animator.SetTrigger("Attacking");
                 yield return new WaitForSeconds(2);
-                soldierData.MakeAnAttack();
+                MakeAnAttack();
             }
             finishExecute = true;
+        }
+        #endregion
+
+        #region AttackAndDefendActions
+        public void MakeAnAttack()
+        {
+            information.SetIsAttacking(true);
+            if (information.GetEnemy() != null)
+            {
+                DefenseSoldier enemySoldier = information.GetEnemy().GetComponent<DefenseSoldier>();
+                enemySoldier.TakeAHit();
+                Debug.Log("Offence Soldier: made a hit!");
+            }
+            information.SetIsAttacking(false);
+        }
+
+        public void TakeAHit()
+        {
+            information.SetHealth(information.GetHealth() - 1);
+            if (healthBar != null)
+            {
+                healthBar.SetCurrentBar(information.GetHealth());
+            }
+            Debug.Log("Offence Soldier: took a hit! have " + information.GetHealth() + " lives");
+            if (information.GetHealth() == 0)
+            {
+                Debug.Log("Offence Soldier: DEAD");
+                //Destroy(gameObject);
+                animator.SetTrigger("Dead");
+            }
+            else
+            {
+                animator.SetTrigger("Defending"); // Soldier took a hit and is now defending himself
+            }
         }
         #endregion
     }
