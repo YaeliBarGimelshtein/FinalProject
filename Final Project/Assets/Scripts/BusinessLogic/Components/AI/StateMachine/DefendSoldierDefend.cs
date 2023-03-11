@@ -10,7 +10,6 @@ public class DefendSoldierDefend : StateMachineBehaviour
     private DefenseSoldier soldierData;
     private SoldierController enemy;
     private Transform defendSoldierTransform;
-    private int counter;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -22,7 +21,6 @@ public class DefendSoldierDefend : StateMachineBehaviour
             enemy = soldierData.information.GetEnemy().GetComponent<SoldierController>();
         }
         agent.isStopped = true;
-        counter = 0;
         soldierData.information.SetIsDefending(true);
         defendSoldierTransform = animator.transform;
     }
@@ -31,8 +29,7 @@ public class DefendSoldierDefend : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         defendSoldierTransform.LookAt(enemy.transform);
-        counter++; 
-        if (enemy.information.GetIsAlive() && counter == 2)
+        if (enemy.information.GetIsAlive())
         { 
             animator.SetTrigger("Attack");
         }

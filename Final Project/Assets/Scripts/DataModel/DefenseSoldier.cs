@@ -32,14 +32,22 @@ public class DefenseSoldier : Character
 
     public void MakeAnAttack()
     {
+        StartCoroutine(AttackCoroutine());
+    }
+
+    IEnumerator AttackCoroutine()
+    {
+        Debug.Log("Defence soldier: starting AttackCoroutine");
         information.SetIsAttacking(true);
-        if (information.GetEnemy() != null)
+        SoldierController enemySoldier = information.GetEnemy().GetComponent<SoldierController>();
+        yield return new WaitForSeconds(3f);
+        if(enemySoldier.information.GetIsAlive())
         {
-            SoldierController enemySoldier = information.GetEnemy().GetComponent<SoldierController>();
             enemySoldier.TakeAHit();
             Debug.Log("Defence soldier: made a hit!");
         }
         information.SetIsAttacking(false);
+        Debug.Log("Defence soldier: finished AttackCoroutine");
     }
 
     public void TakeAHit()
@@ -51,20 +59,16 @@ public class DefenseSoldier : Character
             {
                 healthBar.SetCurrentBar(information.GetHealth());
             }
-            Debug.Log("Defence soldier: took a hit! have " + information.GetHealth() + " lives");
-            if (information.GetHealth() == 0)
-            {
-                Debug.Log("Defence soldier: DEAD");
-                //Destroy(gameObject);
-                animator.SetTrigger("Dead");
-                agent.isStopped = true;
-            }
-            else
-            {
-                animator.SetTrigger("Defend"); // Soldier took a hit and is now defending himself
-            }
         }
         
+        Debug.Log("Defence soldier: took a hit! have " + information.GetHealth() + " lives");
+        if (information.GetHealth() == 0)
+        {
+            Debug.Log("Defence soldier: DEAD");
+            //Destroy(gameObject);
+            animator.SetTrigger("Dead");
+            agent.isStopped = true;
+        }
     }
 
     private void OnDrawGizmos()

@@ -74,7 +74,6 @@ namespace UtilityAI.Core
 
             bestAction = actionsAvailable[bestActionIndex];
             finishedDeciding = true;
-            Debug.Log("best action = " + bestAction);
         }
     }
 }

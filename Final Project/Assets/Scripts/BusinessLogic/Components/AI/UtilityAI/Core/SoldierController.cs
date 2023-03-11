@@ -46,6 +46,7 @@ namespace UtilityAI.Core
             {
                 aiBrain.finishedDeciding = false;
                 finishExecute = false;
+                information.SetIsDefending(false);
                 aiBrain.bestAction.Execute(this);
             }
         }
@@ -99,38 +100,49 @@ namespace UtilityAI.Core
             Debug.Log("is enemy alive = " + enemyObject.GetComponent<DefenseSoldier>().information.GetIsAlive());
             return enemyObject.GetComponent<DefenseSoldier>().information.GetIsAlive();
         }
+
+        public bool EnemyAttacking()
+        {
+            if(information.GetEnemy() == null)
+            {
+                return false;
+            }
+            return information.GetEnemy().GetComponent<DefenseSoldier>().information.GetIsAttacking();
+        }
         #endregion
 
         #region IOfenceSoldierBehaviour
         public void Fallback()
         {
-            animator.SetTrigger("Walking");
+            Debug.Log("performing best action = fallback");
+            animator.SetTrigger("Running");
             agent.destination = homePosition.position;
+            agent.speed += 2;
+            finishExecute = true;
         }
 
         public void Defend()
         {
+            information.SetIsDefending(true);
+            Debug.Log("performing best action = Defend");
             gameObject.transform.LookAt(information.GetEnemy().transform);
             animator.SetTrigger("Defending");
-            TakeAHit();
+            finishExecute = true;
         }
 
         public void Attack()
         {
-            gameObject.transform.LookAt(information.GetEnemy().transform);
             StartCoroutine(AttackCoroutine());
         }
 
         public void FollowTheKing()
         {
-            gameObject.transform.LookAt(king.transform);
-            animator.SetTrigger("Walking");
-            agent.destination = king.transform.position;
-            finishExecute = true;
+            StartCoroutine(FollowTheKingCoroutine());
         }
 
         public void ProtectTheKing()
         {
+            Debug.Log("performing best action = ProtectTheKing");
             gameObject.transform.LookAt(information.GetEnemy().transform);
             agent.destination = information.GetEnemy().transform.position;
             finishExecute = true;
@@ -138,12 +150,34 @@ namespace UtilityAI.Core
 
         IEnumerator AttackCoroutine()
         {
-            if (information.GetEnemy() != null)
-            {
-                animator.SetTrigger("Attacking");
-                yield return new WaitForSeconds(2);
-                MakeAnAttack();
-            }
+            Debug.Log("performing best action = Attack");
+            animator.SetTrigger("Attacking");
+            information.SetIsAttacking(true);
+            gameObject.transform.LookAt(information.GetEnemy().transform);
+            MakeAnAttack();
+            yield return new WaitForSeconds(2f);
+            information.SetIsAttacking(false);
+            finishExecute = true;
+        }
+
+        IEnumerator FollowTheKingCoroutine()
+        {
+            Debug.Log("performing best action = FollowTheKing");
+            gameObject.transform.LookAt(king.transform);
+            agent.destination = king.transform.position;
+            animator.SetTrigger("Walking");
+            yield return new WaitForSeconds(1f);
+            finishExecute = true;
+        }
+
+        IEnumerator DefendCoroutine()
+        {
+            Debug.Log("performing best action = Defend");
+            information.SetIsDefending(true);
+            gameObject.transform.LookAt(information.GetEnemy().transform);
+            animator.SetTrigger("Defending");
+            yield return new WaitForSeconds(1f);
+            information.SetIsDefending(false);
             finishExecute = true;
         }
         #endregion
@@ -151,19 +185,24 @@ namespace UtilityAI.Core
         #region AttackAndDefendActions
         public void MakeAnAttack()
         {
-            information.SetIsAttacking(true);
             if (information.GetEnemy() != null)
             {
                 DefenseSoldier enemySoldier = information.GetEnemy().GetComponent<DefenseSoldier>();
-                enemySoldier.TakeAHit();
-                Debug.Log("Offence Soldier: made a hit!");
+                if(enemySoldier.information.GetIsAlive())
+                {
+                    enemySoldier.TakeAHit();
+                    Debug.Log("Offence Soldier: made a hit!");
+                }
             }
-            information.SetIsAttacking(false);
         }
 
         public void TakeAHit()
         {
-            information.SetHealth(information.GetHealth() - 1);
+            if(!information.GetIsDefending())
+            {
+                information.SetHealth(information.GetHealth() - 1);
+            }
+            
             if (healthBar != null)
             {
                 healthBar.SetCurrentBar(information.GetHealth());
@@ -174,10 +213,6 @@ namespace UtilityAI.Core
                 Debug.Log("Offence Soldier: DEAD");
                 //Destroy(gameObject);
                 animator.SetTrigger("Dead");
-            }
-            else
-            {
-                animator.SetTrigger("Defending"); // Soldier took a hit and is now defending himself
             }
         }
         #endregion

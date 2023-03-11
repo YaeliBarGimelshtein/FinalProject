@@ -32,8 +32,14 @@ public class DefendSoldierAttack : StateMachineBehaviour
         {
             animator.SetTrigger("Patrol");
         }
-        else
+        else if(enemy.information.GetIsAttacking())
         {
+            animator.SetTrigger("Defend");
+        }
+        else if(!soldierData.information.GetIsAttacking())
+        {
+            Debug.Log("DefendSoldierAttack is in middle of attack is " + soldierData.information.GetIsAttacking());
+            soldierData.MakeAnAttack();
             int randomInt = Random.Range(0, 2); // generate a random integer
 
             if (!stateInfo.IsName("Attack") && randomInt == 0)

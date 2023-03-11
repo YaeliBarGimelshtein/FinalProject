@@ -33,10 +33,6 @@ public class SoldierInformation
 
     public GameObject GetEnemy()
     {
-        if(Enemy == null)
-        {
-            Debug.Log("returning enemy = null");
-        }
         return Enemy;
     }
 

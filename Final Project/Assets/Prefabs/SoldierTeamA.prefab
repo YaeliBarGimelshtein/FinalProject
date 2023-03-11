@@ -931,6 +931,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 96835dcdba0fbb245a8ae228b1bcf809, type: 2}
   - {fileID: 11400000, guid: 97be80f2b7f071446a9eb13bcf2f29da, type: 2}
   - {fileID: 11400000, guid: edb9c98de585c034cbdc2c3ec93e2a95, type: 2}
+  - {fileID: 11400000, guid: 53d6b0adeeea09e4a81f4294cabcf6ee, type: 2}
+  - {fileID: 11400000, guid: 5d1ff4c2bf3ff30499f2a7c4d7422513, type: 2}
   homePosition: {fileID: 0}
   king: {fileID: 0}
   healthBar: {fileID: 1017357037}
