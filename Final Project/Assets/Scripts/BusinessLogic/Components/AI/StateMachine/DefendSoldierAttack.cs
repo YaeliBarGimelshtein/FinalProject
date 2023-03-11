@@ -9,6 +9,7 @@ public class DefendSoldierAttack : StateMachineBehaviour
     private NavMeshAgent agent;
     private DefenseSoldier soldierData;
     private SoldierController enemy;
+    private Transform defendSoldierTransform;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -20,11 +21,13 @@ public class DefendSoldierAttack : StateMachineBehaviour
             enemy = soldierData.information.GetEnemy().GetComponent<SoldierController>();
         }
         agent.isStopped = true;
+        defendSoldierTransform = animator.transform;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        defendSoldierTransform.LookAt(enemy.transform);
         if (!enemy.information.GetIsAlive())
         {
             animator.SetTrigger("Patrol");

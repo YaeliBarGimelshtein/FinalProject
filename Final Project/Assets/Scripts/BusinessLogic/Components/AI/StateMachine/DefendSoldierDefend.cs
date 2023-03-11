@@ -9,6 +9,7 @@ public class DefendSoldierDefend : StateMachineBehaviour
     private NavMeshAgent agent;
     private DefenseSoldier soldierData;
     private SoldierController enemy;
+    private Transform defendSoldierTransform;
     private int counter;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -23,13 +24,15 @@ public class DefendSoldierDefend : StateMachineBehaviour
         agent.isStopped = true;
         counter = 0;
         soldierData.information.SetIsDefending(true);
+        defendSoldierTransform = animator.transform;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //counter++; //What is this counter for
-        if (enemy.information.GetIsAlive()) // && counter == 2
+        defendSoldierTransform.LookAt(enemy.transform);
+        counter++; 
+        if (enemy.information.GetIsAlive() && counter == 2)
         { 
             animator.SetTrigger("Attack");
         }

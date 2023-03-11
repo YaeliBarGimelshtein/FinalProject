@@ -117,6 +117,7 @@ namespace UtilityAI.Core
 
         public void Attack()
         {
+            gameObject.transform.LookAt(information.GetEnemy().transform);
             StartCoroutine(AttackCoroutine());
         }
 
