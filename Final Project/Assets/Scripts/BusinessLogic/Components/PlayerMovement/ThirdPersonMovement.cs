@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class ThirdPersonMovement : MonoBehaviour
 {
     private NavMeshAgent agent;
+    private AnimatorManager animatorManager;
     private float turnSmoothTime = 0.1f;
     private float turnSmoothVelocity;
     private float speed = 6f;
@@ -15,6 +16,7 @@ public class ThirdPersonMovement : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        animatorManager = GetComponent<AnimatorManager>();
     }
 
     // Update is called once per frame
@@ -32,7 +34,17 @@ public class ThirdPersonMovement : MonoBehaviour
 
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngel, 0f) * Vector3.forward;
             agent.Move(moveDirection.normalized * Time.deltaTime * speed);
+            HandleAnimator(horizontal, vertical);
         }
+        else
+        {
+            HandleAnimator(0, 0);
+        }
+    }
 
+    private void HandleAnimator(float horizontal, float vertical)
+    {
+        float moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
+        animatorManager.UpdateAnimatorValues(0, moveAmount);
     }
 }
