@@ -22,7 +22,6 @@ public class GetHit : MonoBehaviour
     {
         if(collision.gameObject.tag == "Sword" )
         {
-            Debug.Log("got hit by player");
             health.TakeDamage(10);
         }
     }
