@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Sword : Weapon
+public class SwordOnPickup : Weapon
 {
     public bool revealed;
     public bool taken;
@@ -13,14 +13,14 @@ public class Sword : Weapon
 
     void Start()
     {
-        gameObject.SetActive(false);
-        revealed = false;
+        gameObject.SetActive(true);
+        revealed = true;
         taken = false;
     }
 
     void Update()
     {
-        if(gameObject.activeSelf)
+        if (gameObject.activeSelf)
         {
             HandleLookAtSword();
         }
@@ -28,7 +28,7 @@ public class Sword : Weapon
 
     public void ShowSword(bool state)
     {
-        if(!taken)
+        if (!taken)
         {
             gameObject.SetActive(state);
             revealed = state;
@@ -39,7 +39,7 @@ public class Sword : Weapon
     {
         if (revealed)
         {
-            PlayerInventrySwords playerInventory = other.GetComponent<PlayerInventrySwords>();
+            PlayerInventrySwords playerInventory = other.transform.root.GetComponent<PlayerInventrySwords>();
             if (playerInventory != null)
             {
                 swordDrawSound.Play();
@@ -48,6 +48,7 @@ public class Sword : Weapon
                 gameObject.SetActive(false);
                 swordInstrucationsText.text = "";
             }
+            gameObject.transform.root.gameObject.SetActive(false);
         }
     }
 

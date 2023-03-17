@@ -11821,6 +11821,7 @@ GameObject:
   - component: {fileID: 960278521}
   - component: {fileID: 960278520}
   - component: {fileID: 960278523}
+  - component: {fileID: 960278524}
   m_Layer: 0
   m_Name: WeaponPickup
   m_TagString: Untagged
@@ -11908,6 +11909,26 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &960278524
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960278518}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 03a9d8c7d3b0d794d8d12b15c23fc5da, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &964381543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15858,23 +15879,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 131468, guid: f61def225eac3e247985f6679965a655, type: 3}
   m_PrefabInstance: {fileID: 1544786181}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1544786184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1544786183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11fec80597ee1de418da17838c171531, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  revealed: 0
-  taken: 0
-  playersLook: {fileID: 2065896179}
-  swordInstrucationsText: {fileID: 1402252319}
-  swordDrawSound: {fileID: 818098075}
 --- !u!65 &1544786185
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15888,6 +15892,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.76334727, y: 0.89141303, z: 0.6011781}
   m_Center: {x: -0.0028211474, y: 0.32178882, z: 0.0050703776}
+--- !u!114 &1544786186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544786183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61ead663f1334be42b3e085344d6f6ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  revealed: 0
+  taken: 0
+  playersLook: {fileID: 2065896179}
+  swordInstrucationsText: {fileID: 1402252319}
+  swordDrawSound: {fileID: 818098075}
 --- !u!1 &1560098425
 GameObject:
   m_ObjectHideFlags: 0
