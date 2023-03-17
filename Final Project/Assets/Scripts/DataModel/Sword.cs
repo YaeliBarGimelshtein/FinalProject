@@ -13,8 +13,8 @@ public class Sword : Weapon
 
     void Start()
     {
-        gameObject.SetActive(false);
-        revealed = false;
+        gameObject.SetActive(true);
+        revealed = true;
         taken = false;
     }
 
@@ -37,9 +37,10 @@ public class Sword : Weapon
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("enterder OnTriggerEnter of sword with name " +other.gameObject.name + "and revealed " + revealed);
         if (revealed)
         {
-            PlayerInventrySwords playerInventory = other.GetComponent<PlayerInventrySwords>();
+            PlayerInventrySwords playerInventory = other.transform.root.GetComponent<PlayerInventrySwords>();
             if (playerInventory != null)
             {
                 swordDrawSound.Play();
@@ -48,6 +49,7 @@ public class Sword : Weapon
                 gameObject.SetActive(false);
                 swordInstrucationsText.text = "";
             }
+            gameObject.transform.root.gameObject.SetActive(false);
         }
     }
 
