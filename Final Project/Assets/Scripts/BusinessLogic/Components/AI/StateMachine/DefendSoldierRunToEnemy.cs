@@ -28,7 +28,7 @@ public class DefendSoldierRunToEnemy : StateMachineBehaviour
         {
             animator.SetTrigger(Constants.Attack);
         }
-        else if(tries > 50)
+        else if(tries > 100)
         { 
             animator.SetTrigger(Constants.Walk);
         }

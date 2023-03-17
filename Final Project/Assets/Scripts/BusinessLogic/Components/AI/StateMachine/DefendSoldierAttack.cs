@@ -29,7 +29,7 @@ public class DefendSoldierAttack : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         defendSoldierTransform.LookAt(enemyInformation.transform);
-        if (!enemyInformation.IsAlive)
+        if (!enemyInformation.IsAlive || !SoldierIsCloseEnoughToAttack())
         {
             animator.SetTrigger(Constants.Walk);
         }
@@ -60,5 +60,15 @@ public class DefendSoldierAttack : StateMachineBehaviour
         {
             animator.SetTrigger(Constants.JumpAttack);
         }
+    }
+
+    private bool SoldierIsCloseEnoughToAttack()
+    {
+        var distance = Vector3.Distance(defendSoldierTransform.position, defendSoldierInformation.Enemy.transform.position);
+        if (distance <= 3)
+        {
+            return true;
+        }
+        return false;
     }
 }

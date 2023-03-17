@@ -6,12 +6,14 @@ public class Ragdoll : MonoBehaviour
 {
     Rigidbody[] rigitBodies;
     Animator animator;
+    GameObject canvas;
 
     // Start is called before the first frame update
     void Start()
     {
         rigitBodies = GetComponentsInChildren<Rigidbody>();
         animator = GetComponent<Animator>();
+        canvas = gameObject.transform.GetChild(5).gameObject;
         DeactivateRagdoll();
     }
 
@@ -31,5 +33,6 @@ public class Ragdoll : MonoBehaviour
             rigidBody.isKinematic = false;
         }
         animator.enabled = false;
+        canvas.SetActive(false);
     }
 }

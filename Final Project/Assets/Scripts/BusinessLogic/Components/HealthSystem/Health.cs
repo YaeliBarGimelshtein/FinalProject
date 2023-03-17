@@ -48,7 +48,7 @@ public class Health : MonoBehaviour
     {
         soldierInformation.Health -= amount;
         healthBar.SetCurrentBar(soldierInformation.Health);
-        if(!soldierInformation.IsAlive)
+        if(soldierInformation.Health == 0)
         {
             Die();
         }
@@ -58,6 +58,7 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
+        Debug.Log("Die");
         ragdoll.ActivateRagdoll();
     }
 }
