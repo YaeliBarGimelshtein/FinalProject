@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using UtilityAI.Core;
 
-public class DefenseSoldier : Character
+public class DefenseSoldierController : Character
 {
-    public Bar healthBar;
     public SoldierInformation information;
     private Animator animator;
     private NavMeshAgent agent;
@@ -14,12 +13,6 @@ public class DefenseSoldier : Character
     // Start is called before the first frame update
     void Start()
     {
-        information = new SoldierInformation(5);
-
-        if (healthBar != null)
-        {
-            healthBar.SetMaxBar(information.GetHealth());
-        }
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
@@ -38,31 +31,27 @@ public class DefenseSoldier : Character
     IEnumerator AttackCoroutine()
     {
         Debug.Log("Defence soldier: starting AttackCoroutine");
-        SoldierController enemySoldier = information.GetEnemy().GetComponent<SoldierController>();
+        SoldierController enemySoldier = information.Enemy.GetComponent<SoldierController>();
         yield return new WaitForSeconds(2f);
-        if(enemySoldier.information.GetIsAlive())
+        if(enemySoldier.information.IsAlive)
         {
             enemySoldier.TakeAHit();
             Debug.Log("Defence soldier: made a hit!");
         }
-        information.SetIsAttacking(false);
+        information.IsAttacking = false;
         Debug.Log("Defence soldier: finished AttackCoroutine");
     }
 
     public void TakeAHit()
     {
-        if (!information.GetIsDefending())
+        if (!information.IsDefending)
         {
-            information.SetHealth(information.GetHealth() - 1);
-            if (healthBar != null)
-            {
-                healthBar.SetCurrentBar(information.GetHealth());
-            }
-            animator.SetTrigger("Defend");
+            information.Health -= 1;
+            animator.SetTrigger(Constants.Defend);
         }
         
-        Debug.Log("Defence soldier: took a hit! have " + information.GetHealth() + " lives");
-        if (information.GetHealth() == 0)
+        Debug.Log("Defence soldier: took a hit! have " + information.Health + " lives");
+        if (information.Health == 0)
         {
             Debug.Log("Defence soldier: DEAD");
             //Destroy(gameObject);
@@ -80,7 +69,7 @@ public class DefenseSoldier : Character
     {
         Debug.Log("Defence soldier: starting DefendCoroutine");
         yield return new WaitForSeconds(2f);
-        information.SetIsDefending(false);
+        information.IsDefending = false;
         Debug.Log("Defence soldier: finished DefendCoroutine");
     }
 }

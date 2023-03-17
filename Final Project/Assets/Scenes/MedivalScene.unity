@@ -7041,7 +7041,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 460440825}
-  m_LocalRotation: {x: 0.16036716, y: 0.000000018988336, z: -0.0000000030850345, w: 0.98705745}
+  m_LocalRotation: {x: 0.16036716, y: -0.000000018988336, z: 0.0000000030850345, w: 0.98705745}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20619,6 +20619,8 @@ GameObject:
   - component: {fileID: 1991807201}
   - component: {fileID: 5866666020243006488}
   - component: {fileID: 5866666020243006489}
+  - component: {fileID: 5866666020243006490}
+  - component: {fileID: 5866666020243006491}
   m_Layer: 0
   m_Name: DefendSoldier
   m_TagString: Untagged
@@ -24742,6 +24744,31 @@ MonoBehaviour:
   currentHealth: 0
   blinkIntensity: 10
   blinkDuration: 2
+--- !u!114 &5866666020243006490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147606742231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 641cc755a1beef14a89736bed6372987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5866666020243006491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147606742231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb4dab547c43de4e9033a7ecb9eaddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  information: {fileID: 0}
 --- !u!4 &5901452233656544494
 Transform:
   m_ObjectHideFlags: 0

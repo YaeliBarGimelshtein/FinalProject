@@ -11,16 +11,16 @@ public class DefendSoldierPartol : StateMachineBehaviour
     private int destinationPoint = 0;
     private List<Transform> walkingPlaces;
     private static readonly int enemyALayerMask = 1 << 7;
-    private Transform soldier;
-    private DefenseSoldier soldierData;
+    private Transform defendSoldierTransform;
+    private SoldierInformation defendSoldierInformation;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
-        walkingPlaces = GameObject.FindGameObjectsWithTag("CastleBPatrol").Select(go => go.transform).ToList();
-        soldier = animator.GetComponent<Transform>();
-        soldierData = animator.GetComponent<DefenseSoldier>();
+        walkingPlaces = GameObject.FindGameObjectsWithTag(Constants.CastleBPatrolTag).Select(go => go.transform).ToList();
+        defendSoldierTransform = animator.GetComponent<Transform>();
+        defendSoldierInformation = animator.GetComponent<SoldierInformation>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -34,40 +34,30 @@ public class DefendSoldierPartol : StateMachineBehaviour
         var enemyDistance = GetEnemyDistance();
         if (enemyDistance <= 10f && enemyDistance > 0)
         {
-            animator.SetTrigger("RunToEnemy");
-        }
-        else if(enemyDistance == 0)
-        {
-            animator.SetTrigger("Attack");
+            animator.SetTrigger(Constants.Run);
         }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent.SetDestination(soldierData.information.GetEnemy().transform.position);
+        agent.SetDestination(defendSoldierInformation.Enemy.transform.position);
+        animator.ResetTrigger(Constants.Run);
     }
 
     private void Patrol()
-    {
-        
-        // Returns if no points have been set up
+    {  
         if (walkingPlaces.Count == 0)
         {
             return;
         }
-
-        // Set the agent to go to the currently selected destination.
         agent.SetDestination(walkingPlaces[destinationPoint].position);
-
-        // Choose the next point in the array as the destination,
-        // cycling to the start if necessary.
         destinationPoint = (destinationPoint + 1) % walkingPlaces.Count;
     }
 
     public float GetEnemyDistance()
     {
-        Collider[] colliders = Physics.OverlapSphere(soldier.position, 10f, enemyALayerMask);
+        Collider[] colliders = Physics.OverlapSphere(defendSoldierTransform.position, 10f, enemyALayerMask);
         if (colliders.Length > 0)
         {
             return GetClosestEnemy(colliders);
@@ -82,19 +72,19 @@ public class DefendSoldierPartol : StateMachineBehaviour
 
         for (int i = 0; i < colliders.Length; i++)
         {
-            float currentEnemyDistance = Vector3.Distance(soldier.position, colliders[i].transform.position);
+            float currentEnemyDistance = Vector3.Distance(defendSoldierTransform.position, colliders[i].transform.position);
             if (currentEnemyDistance < distance && EnemyIsAlive(colliders[i].gameObject))
             {
                 closestEnemyIndex = i;
                 distance = currentEnemyDistance;
             }
         }
-        soldierData.information.SetEnemy(colliders[closestEnemyIndex].gameObject);
+        defendSoldierInformation.Enemy = colliders[closestEnemyIndex].gameObject;
         return distance;
     }
 
     private bool EnemyIsAlive(GameObject enemy)
     {
-       return enemy.GetComponent<SoldierController>().information.GetIsAlive();
+        return enemy.GetComponent<SoldierInformation>().IsAlive;
     }
 }

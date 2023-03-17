@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    [HideInInspector]
     public int maxHealth;
     [HideInInspector]
     public int currentHealth;
@@ -21,6 +22,7 @@ public class Health : MonoBehaviour
         ragdoll = GetComponent<Ragdoll>();
         skinnedMeshRenderer = GetComponentsInChildren<SkinnedMeshRenderer>();
         healthBar = GetComponentInChildren<Bar>();
+        maxHealth = Constants.MaxHealth;
         currentHealth = maxHealth;
         healthBar.SetMaxBar(currentHealth);
         healthBar.SetCurrentBar(currentHealth);
@@ -56,7 +58,6 @@ public class Health : MonoBehaviour
         }
 
         blinkTimer = blinkDuration;
-
     }
 
     private void Die()

@@ -7,16 +7,16 @@ using UnityEngine.AI;
 public class DefendSoldierRunToEnemy : StateMachineBehaviour
 {
     private NavMeshAgent agent;
-    private Transform soldier;
-    private DefenseSoldier soldierData;
+    private Transform defendSoldierTransform;
+    private SoldierInformation defendSoldierInformation;
     private int tries;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
-        soldier = animator.GetComponent<Transform>();
-        soldierData = animator.GetComponent<DefenseSoldier>();
+        defendSoldierTransform = animator.GetComponent<Transform>();
+        defendSoldierInformation = animator.GetComponent<SoldierInformation>();
         agent.speed += 2;
         tries = 0;
     }
@@ -26,11 +26,15 @@ public class DefendSoldierRunToEnemy : StateMachineBehaviour
     {
         if(SoldierIsCloseEnoughToAttack())
         {
-            animator.SetTrigger("Attack");
+            animator.SetTrigger(Constants.Attack);
         }
         else if(tries > 50)
+        { 
+            animator.SetTrigger(Constants.Walk);
+        }
+        else
         {
-            animator.SetTrigger("Patrol");
+            tries++;
         }
     }
     
@@ -42,13 +46,10 @@ public class DefendSoldierRunToEnemy : StateMachineBehaviour
 
     private bool SoldierIsCloseEnoughToAttack()
     {
-        if(soldierData != null)
+        var distance = Vector3.Distance(defendSoldierTransform.position, defendSoldierInformation.Enemy.transform.position);
+        if(distance <= 3)
         {
-            var distance = Vector3.Distance(soldier.position, soldierData.information.GetEnemy().transform.position);
-            if(distance <= 3)
-            {
-                return true;
-            }
+            return true;
         }
         return false;
     }

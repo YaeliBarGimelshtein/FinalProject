@@ -26,18 +26,14 @@ namespace UtilityAI.Core
             aiBrain = GetComponent<AIBrain>();
             animator = GetComponent<Animator>();
             agent = GetComponent<NavMeshAgent>();
+            information = GetComponent<SoldierInformation>();
             finishExecute = true;
-            information = new SoldierInformation(5);
-            if (healthBar != null)
-            {
-                healthBar.SetMaxBar(information.GetHealth());
-            }
         }
         
         // Update is called once per frame
         void Update()
         {
-            if(!information.GetIsAlive())
+            if(!information.IsAlive)
             {
                 agent.isStopped = true;
                 animator.SetTrigger("Dead");
@@ -46,7 +42,7 @@ namespace UtilityAI.Core
             {
                 aiBrain.finishedDeciding = false;
                 finishExecute = false;
-                information.SetIsDefending(false);
+                information.IsDefending = false;
                 aiBrain.bestAction.Execute(this);
             }
         }
@@ -81,13 +77,13 @@ namespace UtilityAI.Core
                     distance = currentEnemyDistance;
                 }
             }
-            information.SetEnemy(colliders[closestEnemyIndex].gameObject);
+            information.Enemy = (colliders[closestEnemyIndex].gameObject);
             return distance;
         }
 
         public float GetSoldierHealth()
         {
-            return information.GetHealth();
+            return information.Health;
         }
 
         public float GetKingDistance()
@@ -97,22 +93,22 @@ namespace UtilityAI.Core
 
         private bool enemyIsAlive(GameObject enemyObject)
         {
-            Debug.Log("is enemy alive = " + enemyObject.GetComponent<DefenseSoldier>().information.GetIsAlive());
-            return enemyObject.GetComponent<DefenseSoldier>().information.GetIsAlive();
+            Debug.Log("is enemy alive = " + enemyObject.GetComponent<SoldierInformation>().IsAlive);
+            return enemyObject.GetComponent<SoldierInformation>().IsAlive;
         }
 
         public bool EnemyAttacking()
         {
-            if(information.GetEnemy() == null)
+            if(information.Enemy == null)
             {
                 return false;
             }
-            return information.GetEnemy().GetComponent<DefenseSoldier>().information.GetIsAttacking();
+            return information.Enemy.GetComponent<SoldierInformation>().IsAttacking;
         }
 
         public bool IsFallingBack()
         {
-            return information.GetIsFallingBack();
+            return information.IsFallingBack;
         }
         #endregion
 
@@ -149,8 +145,8 @@ namespace UtilityAI.Core
         public void ProtectTheKing()
         {
             Debug.Log("performing best action = ProtectTheKing");
-            gameObject.transform.LookAt(information.GetEnemy().transform);
-            agent.destination = information.GetEnemy().transform.position;
+            gameObject.transform.LookAt(information.Enemy.transform);
+            agent.destination = information.Enemy.transform.position;
             finishExecute = true;
         }
 
@@ -158,11 +154,11 @@ namespace UtilityAI.Core
         {
             Debug.Log("performing best action = Attack");
             animator.SetTrigger("Attacking");
-            information.SetIsAttacking(true);
-            gameObject.transform.LookAt(information.GetEnemy().transform);
+            information.IsAttacking = true;
+            gameObject.transform.LookAt(information.Enemy.transform);
             MakeAnAttack();
             yield return new WaitForSeconds(2f);
-            information.SetIsAttacking(false);
+            information.IsAttacking = false;
             finishExecute = true;
         }
 
@@ -179,11 +175,11 @@ namespace UtilityAI.Core
         IEnumerator DefendCoroutine()
         {
             Debug.Log("performing best action = Defend");
-            information.SetIsDefending(true);
-            gameObject.transform.LookAt(information.GetEnemy().transform);
+            information.IsDefending = true;
+            gameObject.transform.LookAt(information.Enemy.transform);
             animator.SetTrigger("Defending");
             yield return new WaitForSeconds(1f);
-            information.SetIsDefending(false);
+            information.IsDefending = false;
             finishExecute = true;
         }
         #endregion
@@ -191,12 +187,13 @@ namespace UtilityAI.Core
         #region AttackAndDefendActions
         public void MakeAnAttack()
         {
-            if (information.GetEnemy() != null)
+            if (information.Enemy != null)
             {
-                DefenseSoldier enemySoldier = information.GetEnemy().GetComponent<DefenseSoldier>();
-                if(enemySoldier.information.GetIsAlive())
+                SoldierInformation enemySoldierInformation = information.Enemy.GetComponent<SoldierInformation>();
+                DefenseSoldierController enemySoldierController = information.Enemy.GetComponent<DefenseSoldierController>();
+                if (enemySoldierInformation.IsAlive)
                 {
-                    enemySoldier.TakeAHit();
+                    enemySoldierController.TakeAHit();
                     Debug.Log("Offence Soldier: made a hit!");
                 }
             }
@@ -204,17 +201,17 @@ namespace UtilityAI.Core
 
         public void TakeAHit()
         {
-            if(!information.GetIsDefending())
+            if(!information.IsDefending)
             {
-                information.SetHealth(information.GetHealth() - 1);
+                information.Health -= 1;
                 if (healthBar != null)
                 {
-                    healthBar.SetCurrentBar(information.GetHealth());
+                    healthBar.SetCurrentBar(information.Health);
                 }
             }
             
-            Debug.Log("Offence Soldier: took a hit! have " + information.GetHealth() + " lives");
-            if (information.GetHealth() == 0)
+            Debug.Log("Offence Soldier: took a hit! have " + information.Health + " lives");
+            if (information.Health == 0)
             {
                 Debug.Log("Offence Soldier: DEAD");
                 //Destroy(gameObject);

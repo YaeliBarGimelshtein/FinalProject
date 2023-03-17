@@ -22,4 +22,15 @@ public class Constants
 
     //Health Bar
     public const int MaxHealth = 5;
+
+    //Animations
+    public const string Attack = "attack";
+    public const string Run = "run";
+    public const string Defend = "defend";
+    public const string Die = "die";
+    public const string Walk = "walk";
+
+    //Tags
+    public const string CastleBPatrolTag = "CastleBPatrol";
+
 }

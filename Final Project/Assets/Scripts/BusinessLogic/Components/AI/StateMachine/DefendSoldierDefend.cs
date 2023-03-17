@@ -7,21 +7,24 @@ using UtilityAI.Core;
 public class DefendSoldierDefend : StateMachineBehaviour
 {
     private NavMeshAgent agent;
-    private DefenseSoldier soldierData;
+    private SoldierInformation defendSoldierInformation;
     private SoldierController enemy;
     private Transform defendSoldierTransform;
+    private DefenseSoldierController defenseSoldierController;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
-        soldierData = animator.GetComponent<DefenseSoldier>();
-        if (soldierData.information.GetEnemy() != null)
+        defendSoldierInformation = animator.GetComponent<SoldierInformation>();
+        defenseSoldierController = animator.GetComponent<DefenseSoldierController>();
+
+        if (defendSoldierInformation.Enemy != null)
         {
-            enemy = soldierData.information.GetEnemy().GetComponent<SoldierController>();
+            enemy = defendSoldierInformation.Enemy.GetComponent<SoldierController>();
         }
         agent.isStopped = true;
-        soldierData.information.SetIsDefending(true);
+        defendSoldierInformation.IsDefending = true;
         defendSoldierTransform = animator.transform;
     }
 
@@ -29,18 +32,18 @@ public class DefendSoldierDefend : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         defendSoldierTransform.LookAt(enemy.transform);
-        soldierData.Defend();
-        if(!soldierData.information.GetIsAlive())
+        defenseSoldierController.Defend();
+        if(!defendSoldierInformation.IsAlive)
         {
-            animator.SetTrigger("Dead");
+            animator.SetTrigger(Constants.Die);
         }
-        else if (enemy.information.GetIsAlive())
+        else if (enemy.information.IsAlive)
         { 
-            animator.SetTrigger("Attack");
+            animator.SetTrigger(Constants.Attack);
         }
         else
         {
-            animator.SetTrigger("Patrol");
+            animator.SetTrigger(Constants.Walk);
         }
     }
 
@@ -48,6 +51,6 @@ public class DefendSoldierDefend : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent.isStopped = false;
-        soldierData.information.SetIsDefending(false);
+        defendSoldierInformation.IsDefending = false;
     }
 }

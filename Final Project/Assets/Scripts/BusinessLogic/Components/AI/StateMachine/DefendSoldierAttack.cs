@@ -7,7 +7,7 @@ using UtilityAI.Core;
 public class DefendSoldierAttack : StateMachineBehaviour
 {
     private NavMeshAgent agent;
-    private DefenseSoldier soldierData;
+    private SoldierInformation defendSoldierInformation;
     private SoldierController enemy;
     private Transform defendSoldierTransform;
 
@@ -15,21 +15,21 @@ public class DefendSoldierAttack : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
-        soldierData = animator.GetComponent<DefenseSoldier>();
-        if(soldierData.information.GetEnemy() != null)
+        defendSoldierInformation = animator.GetComponent<SoldierInformation>();
+        if(defendSoldierInformation.Enemy != null)
         {
-            enemy = soldierData.information.GetEnemy().GetComponent<SoldierController>();
+            enemy = defendSoldierInformation.Enemy.GetComponent<SoldierController>();
         }
         agent.isStopped = true;
         defendSoldierTransform = animator.transform;
-        soldierData.information.SetIsAttacking(true);
+        defendSoldierInformation.IsAttacking = true;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         defendSoldierTransform.LookAt(enemy.transform);
-        if (!enemy.information.GetIsAlive())
+        if (!enemy.information.IsAlive)
         {
             animator.SetTrigger("Patrol");
         }

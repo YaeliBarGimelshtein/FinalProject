@@ -16,6 +16,7 @@ public class PlayerInventrySwords : MonoBehaviour
     private void UpdateSwordCollectedNumber()
     {
         GlobalPlayerManagement.instance.playerNumberOfSowrds = GlobalPlayerManagement.instance.playerNumberOfSowrds + 1;
+        //update the swords num
     }
 
 }
