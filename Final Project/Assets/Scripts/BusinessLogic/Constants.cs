@@ -21,7 +21,7 @@ public class Constants
     public const double VillagerWalkingDistance = 2f;
 
     //Health Bar
-    public const int MaxHealth = 5;
+    public const int MaxHealth = 100;
 
     //Animations
     public const string Attack = "attack";
@@ -29,6 +29,8 @@ public class Constants
     public const string Defend = "defend";
     public const string Die = "die";
     public const string Walk = "walk";
+    public const string LowAttack = "lowAttack";
+    public const string JumpAttack = "jumpAttack";
 
     //Tags
     public const string CastleBPatrolTag = "CastleBPatrol";

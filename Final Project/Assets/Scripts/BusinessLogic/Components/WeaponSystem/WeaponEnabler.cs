@@ -18,7 +18,7 @@ public class WeaponEnabler : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            animator.SetTrigger("attack");
+            animator.SetTrigger(Constants.Attack);
         }
     }
 

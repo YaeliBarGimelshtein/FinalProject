@@ -85,6 +85,6 @@ public class DefendSoldierPartol : StateMachineBehaviour
 
     private bool EnemyIsAlive(GameObject enemy)
     {
-        return enemy.GetComponent<SoldierInformation>().IsAlive;
+        return enemy.transform.root.GetComponent<SoldierInformation>().IsAlive;
     }
 }

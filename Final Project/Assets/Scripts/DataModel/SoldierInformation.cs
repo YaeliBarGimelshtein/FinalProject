@@ -31,4 +31,15 @@ public class SoldierInformation : Character
             IsAlive = true;
         }
     }
+
+    private void Start()
+    {
+        health = Constants.MaxHealth;
+        IsAlive = true;
+        IsAttacking = false;
+        IsDefending = false;
+        IsFallingBack = false;
+        Enemy = null;
+        WeaponsNumber = 0;
+    }
 }

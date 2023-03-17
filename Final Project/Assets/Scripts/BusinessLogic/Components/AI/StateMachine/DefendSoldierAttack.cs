@@ -8,7 +8,7 @@ public class DefendSoldierAttack : StateMachineBehaviour
 {
     private NavMeshAgent agent;
     private SoldierInformation defendSoldierInformation;
-    private SoldierController enemy;
+    private SoldierInformation enemyInformation;
     private Transform defendSoldierTransform;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -18,7 +18,7 @@ public class DefendSoldierAttack : StateMachineBehaviour
         defendSoldierInformation = animator.GetComponent<SoldierInformation>();
         if(defendSoldierInformation.Enemy != null)
         {
-            enemy = defendSoldierInformation.Enemy.GetComponent<SoldierController>();
+            enemyInformation = defendSoldierInformation.Enemy.transform.root.GetComponent<SoldierInformation>();
         }
         agent.isStopped = true;
         defendSoldierTransform = animator.transform;
@@ -28,28 +28,14 @@ public class DefendSoldierAttack : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        defendSoldierTransform.LookAt(enemy.transform);
-        if (!enemy.information.IsAlive)
+        defendSoldierTransform.LookAt(enemyInformation.transform);
+        if (!enemyInformation.IsAlive)
         {
-            animator.SetTrigger("Patrol");
+            animator.SetTrigger(Constants.Walk);
         }
         else 
         {
-            //soldierData.MakeAnAttack();
-            int randomInt = Random.Range(0, 2); // generate a random integer
-
-            if (!stateInfo.IsName("Attack") && randomInt == 0)
-            {
-                animator.SetTrigger("Attack");
-            }
-            else if (!stateInfo.IsName("Attack Jump Slash") && randomInt == 1)
-            {
-                animator.SetTrigger("AttackJump");
-            }
-            else if (!stateInfo.IsName("Attack Impact 1") && randomInt == 2)
-            {
-                animator.SetTrigger("AttackImpact");
-            }
+            DecideAttackNextState(animator, stateInfo);
         }
     }
 
@@ -57,5 +43,22 @@ public class DefendSoldierAttack : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent.isStopped = false;
+    }
+
+    private void DecideAttackNextState(Animator animator, AnimatorStateInfo stateInfo)
+    {
+        int randomInt = Random.Range(0, 2);
+        if (!stateInfo.IsName(Constants.Attack) && randomInt == 0)
+        {
+            animator.SetTrigger(Constants.Attack);
+        }
+        else if (!stateInfo.IsName(Constants.LowAttack) && randomInt == 1)
+        {
+            animator.SetTrigger(Constants.LowAttack);
+        }
+        else if (!stateInfo.IsName(Constants.JumpAttack) && randomInt == 2)
+        {
+            animator.SetTrigger(Constants.JumpAttack);
+        }
     }
 }

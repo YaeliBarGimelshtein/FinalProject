@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [HideInInspector]
-    public int maxHealth;
-    [HideInInspector]
-    public int currentHealth;
     private Ragdoll ragdoll;
     private Bar healthBar;
+    private SoldierInformation soldierInformation;
 
     private SkinnedMeshRenderer[] skinnedMeshRenderer;
     public float blinkIntensity;
@@ -22,10 +19,9 @@ public class Health : MonoBehaviour
         ragdoll = GetComponent<Ragdoll>();
         skinnedMeshRenderer = GetComponentsInChildren<SkinnedMeshRenderer>();
         healthBar = GetComponentInChildren<Bar>();
-        maxHealth = Constants.MaxHealth;
-        currentHealth = maxHealth;
-        healthBar.SetMaxBar(currentHealth);
-        healthBar.SetCurrentBar(currentHealth);
+        soldierInformation = GetComponent<SoldierInformation>();
+        healthBar.SetMaxBar(Constants.MaxHealth);
+        healthBar.SetCurrentBar(Constants.MaxHealth);
 
 
         var rigitBodies = GetComponentsInChildren<Rigidbody>();
@@ -50,9 +46,9 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        currentHealth -= amount;
-        healthBar.SetCurrentBar(currentHealth);
-        if(currentHealth <= 0)
+        soldierInformation.Health -= amount;
+        healthBar.SetCurrentBar(soldierInformation.Health);
+        if(!soldierInformation.IsAlive)
         {
             Die();
         }

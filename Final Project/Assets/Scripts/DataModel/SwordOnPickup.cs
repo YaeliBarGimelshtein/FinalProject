@@ -10,6 +10,7 @@ public class SwordOnPickup : Weapon
     public GameObject playersLook;
     public TextMeshProUGUI swordInstrucationsText;
     public AudioSource swordDrawSound;
+    private SoldierInformation soldierInformation;
 
     void Start()
     {
@@ -40,13 +41,15 @@ public class SwordOnPickup : Weapon
         if (revealed)
         {
             PlayerInventrySwords playerInventory = other.transform.root.GetComponent<PlayerInventrySwords>();
-            if (playerInventory != null)
+            SoldierInformation soldierInformation = other.transform.root.GetComponent<SoldierInformation>();
+            if (playerInventory != null && soldierInformation != null)
             {
                 swordDrawSound.Play();
                 playerInventory.SwordsCollected();
                 taken = true;
                 gameObject.SetActive(false);
                 swordInstrucationsText.text = "";
+                soldierInformation.WeaponsNumber += 1;
             }
             gameObject.transform.root.gameObject.SetActive(false);
         }

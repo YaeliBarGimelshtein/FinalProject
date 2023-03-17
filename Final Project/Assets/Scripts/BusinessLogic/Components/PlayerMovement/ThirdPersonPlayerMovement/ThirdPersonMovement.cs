@@ -11,12 +11,14 @@ public class ThirdPersonMovement : MonoBehaviour
     private float turnSmoothVelocity;
     private float speed = 6f;
     public Transform thirdPersonCamera;
+    private AudioSource stepSound;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animatorManager = GetComponent<AnimatorManager>();
+        stepSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,6 +37,10 @@ public class ThirdPersonMovement : MonoBehaviour
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngel, 0f) * Vector3.forward;
             agent.Move(moveDirection.normalized * Time.deltaTime * speed);
             HandleAnimator(horizontal, vertical);
+            if (!stepSound.isPlaying)
+            {
+                stepSound.Play();
+            } 
         }
         else
         {
