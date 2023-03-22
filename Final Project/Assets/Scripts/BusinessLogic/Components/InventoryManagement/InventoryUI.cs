@@ -14,7 +14,7 @@ public class InventoryUI : MonoBehaviour
     void Start()
     {
         UpdateSwordNumberOnStart();
-        UpdateHealthText();
+        UpdateHealthTextOnStart();
     }
 
     public void UpdateSwordText()
@@ -25,13 +25,19 @@ public class InventoryUI : MonoBehaviour
 
     public void UpdateHealthText()
     {
-        armyHealthText.text = Constants.MaxHealth.ToString();
-        swordsBar.SetCurrentBar(Constants.MaxHealth);
+        armyHealthText.text = soldierInformation.Health.ToString();
+        swordsBar.SetCurrentBar(soldierInformation.Health);
     }
 
     private void UpdateSwordNumberOnStart()
     {
         swordText.text = 0.ToString();
         swordsBar.SetCurrentBar(0);
+    }
+
+    public void UpdateHealthTextOnStart()
+    {
+        armyHealthText.text = Constants.MaxHealth.ToString();
+        swordsBar.SetCurrentBar(Constants.MaxHealth);
     }
 }

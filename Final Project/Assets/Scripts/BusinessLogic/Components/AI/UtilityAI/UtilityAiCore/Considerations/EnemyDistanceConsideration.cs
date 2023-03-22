@@ -12,10 +12,9 @@ namespace UtilityAI.Considerations
 
         public override float ScoreConsideration(OffenceSoldierController npc)
         {
-            var distanceBefore = npc.GetEnemyDistance();
-            var distance = distanceBefore / 10;
+            float distance = npc.GetEnemyDistance() / Constants.SearchDistance;
             score = responseCurve.Evaluate(Mathf.Clamp01(distance));
-            //Debug.Log("distance before /10 is " + distanceBefore + "after is " + distance + "and score is " + score);
+            Debug.Log("EnemyDistanceConsideration score is: " + score);
             return score;
         }
     }

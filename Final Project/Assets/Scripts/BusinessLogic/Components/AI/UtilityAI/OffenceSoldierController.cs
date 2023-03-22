@@ -47,12 +47,12 @@ public class OffenceSoldierController : Character, IOfenceSoldierBehaviour
     #region ConsiderationsWorldData
     public float GetEnemyDistance()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 10f, enemyBLayerMask);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, Constants.SearchDistance, enemyBLayerMask);
         if (colliders.Length > 0)
         {
             return GetClosestEnemy(colliders);
         }
-        return 10f;
+        return Constants.SearchDistance;
     }
 
     private float GetClosestEnemy(Collider[] colliders)

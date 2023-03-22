@@ -13,15 +13,16 @@ namespace UtilityAI.Considerations
         public override float ScoreConsideration(OffenceSoldierController npc)
         {
             var distance = npc.GetKingDistance();
-            if(distance > 100)
+            if(distance > Constants.KingsMaxDistance)
             {
                 distance = 1;
             }
             else
             {
-                distance = distance / 100;
+                distance = distance / Constants.KingsMaxDistance;
             }
             score = responseCurve.Evaluate(Mathf.Clamp01(distance));
+            Debug.Log("KingDistanceConsideration score is: " + score);
             return score;
         }
     }

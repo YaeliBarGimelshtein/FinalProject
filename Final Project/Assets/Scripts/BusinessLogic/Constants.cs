@@ -19,6 +19,8 @@ public class Constants
     //NPC
     public const double DefenceSoldierWalkingDistance = 1.8f;
     public const double VillagerWalkingDistance = 2f;
+    public const float SearchDistance = 10f;
+    public const float KingsMaxDistance = 100f;
 
     //Health Bar
     public const int MaxHealth = 100;
