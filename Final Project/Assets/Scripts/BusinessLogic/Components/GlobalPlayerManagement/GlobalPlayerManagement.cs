@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GlobalPlayerManagement : MonoBehaviour
 {
-    public int playerNumberOfSowrds = 0;
     public float soundVolume = 0.5f;
 
     //singeltion

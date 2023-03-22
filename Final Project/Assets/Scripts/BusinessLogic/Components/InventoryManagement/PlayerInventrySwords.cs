@@ -15,7 +15,14 @@ public class PlayerInventrySwords : MonoBehaviour
 
     private void UpdateSwordCollectedNumber()
     {
-        GlobalPlayerManagement.instance.playerNumberOfSowrds = GlobalPlayerManagement.instance.playerNumberOfSowrds + 1;
+        SoldierInformation soldierInformation = gameObject.GetComponent<SoldierInformation>();
+        int numSwordsBefore = soldierInformation.WeaponsNumber;
+        soldierInformation.WeaponsNumber += 1;
+        if(numSwordsBefore == 0)
+        {
+            gameObject.transform.GetChild(1).gameObject.SetActive(true);
+        }
+        //GlobalPlayerManagement.instance.playerNumberOfSowrds = GlobalPlayerManagement.instance.playerNumberOfSowrds + 1;
         //update the swords num
     }
 

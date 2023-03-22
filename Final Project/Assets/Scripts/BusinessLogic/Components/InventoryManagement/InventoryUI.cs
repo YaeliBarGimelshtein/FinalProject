@@ -9,22 +9,29 @@ public class InventoryUI : MonoBehaviour
     public TextMeshProUGUI armyHealthText;
     public Bar swordsBar;
     public Bar armyHealthBar;
+    public SoldierInformation soldierInformation;
 
     void Start()
     {
-        UpdateSwordText();
+        UpdateSwordNumberOnStart();
         UpdateHealthText();
     }
 
     public void UpdateSwordText()
     {
-        swordText.text = GlobalPlayerManagement.instance.playerNumberOfSowrds.ToString();
-        swordsBar.SetCurrentBar(GlobalPlayerManagement.instance.playerNumberOfSowrds);
+        swordText.text = soldierInformation.WeaponsNumber.ToString();
+        swordsBar.SetCurrentBar(soldierInformation.WeaponsNumber);
     }
 
     public void UpdateHealthText()
     {
-        armyHealthText.text = "20";
-        swordsBar.SetCurrentBar(20);
+        armyHealthText.text = Constants.MaxHealth.ToString();
+        swordsBar.SetCurrentBar(Constants.MaxHealth);
+    }
+
+    private void UpdateSwordNumberOnStart()
+    {
+        swordText.text = 0.ToString();
+        swordsBar.SetCurrentBar(0);
     }
 }

@@ -49,7 +49,6 @@ public class SwordOnPickup : Weapon
                 taken = true;
                 gameObject.SetActive(false);
                 swordInstrucationsText.text = "";
-                soldierInformation.WeaponsNumber += 1;
             }
             gameObject.transform.root.gameObject.SetActive(false);
         }
