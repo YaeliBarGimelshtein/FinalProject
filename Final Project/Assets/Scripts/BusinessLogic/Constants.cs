@@ -35,4 +35,7 @@ public class Constants
     //Tags
     public const string CastleBPatrolTag = "CastleBPatrol";
 
+    //Hits
+    public const int HitAmount = 10;
+
 }

@@ -22,8 +22,6 @@ public class PlayerInventrySwords : MonoBehaviour
         {
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
         }
-        //GlobalPlayerManagement.instance.playerNumberOfSowrds = GlobalPlayerManagement.instance.playerNumberOfSowrds + 1;
-        //update the swords num
     }
 
 }

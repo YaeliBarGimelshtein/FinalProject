@@ -10,7 +10,7 @@ public class GetHit : MonoBehaviour
     {
         if(collision.gameObject.tag == "Sword" )
         {
-            health.TakeDamage(10);
+            health.TakeDamage(Constants.HitAmount);
         }
     }
 }
