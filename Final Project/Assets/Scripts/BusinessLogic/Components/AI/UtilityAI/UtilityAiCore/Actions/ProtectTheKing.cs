@@ -8,7 +8,7 @@ namespace UtilityAI.Actions
     [CreateAssetMenu(fileName = "ProtectTheKing", menuName = "UtilityAI/Actions/ProtectTheKing")]
     public class ProtectTheKing : Action
     {
-        public override void Execute(SoldierController npc)
+        public override void Execute(OffenceSoldierController npc)
         {
             npc.ProtectTheKing();
             npc.OnFinishedAction();

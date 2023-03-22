@@ -23,6 +23,6 @@ namespace UtilityAI.Core
             score = 0;
         }
 
-        public abstract void Execute(SoldierController npc);
+        public abstract void Execute(OffenceSoldierController npc);
     }
 }

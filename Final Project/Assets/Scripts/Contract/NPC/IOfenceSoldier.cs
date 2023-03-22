@@ -6,7 +6,6 @@ namespace Assets.Scripts.Contract.NPC
 {
     interface IOfenceSoldierBehaviour
     {
-        void Defend();
         void Attack();
         void Fallback();
         void FollowTheKing();

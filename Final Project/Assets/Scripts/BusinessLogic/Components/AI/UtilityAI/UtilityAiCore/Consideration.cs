@@ -22,6 +22,6 @@ namespace UtilityAI.Core
             score = 0;
         }
 
-        public abstract float ScoreConsideration(SoldierController npc);
+        public abstract float ScoreConsideration(OffenceSoldierController npc);
     }
 }

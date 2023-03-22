@@ -10,7 +10,7 @@ namespace UtilityAI.Considerations
     {
         [SerializeField] private AnimationCurve responseCurve;
 
-        public override float ScoreConsideration(SoldierController npc)
+        public override float ScoreConsideration(OffenceSoldierController npc)
         {
             var healthBefore = npc.GetSoldierHealth();
             var health = healthBefore / 5;

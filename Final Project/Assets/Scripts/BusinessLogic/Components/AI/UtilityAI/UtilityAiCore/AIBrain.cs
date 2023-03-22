@@ -7,13 +7,13 @@ namespace UtilityAI.Core
     public class AIBrain : MonoBehaviour
     {
         public Action bestAction { get; set; }
-        private SoldierController npc;
+        private OffenceSoldierController npc;
         public bool finishedDeciding { get; set; }
 
         // Start is called before the first frame update
         void Start()
         {
-            npc = GetComponent<SoldierController>();
+            npc = GetComponent<OffenceSoldierController>();
         }
 
         // Update is called once per frame

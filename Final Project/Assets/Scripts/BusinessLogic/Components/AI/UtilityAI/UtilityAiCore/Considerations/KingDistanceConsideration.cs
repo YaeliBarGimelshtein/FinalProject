@@ -10,7 +10,7 @@ namespace UtilityAI.Considerations
     {
         [SerializeField] private AnimationCurve responseCurve;
 
-        public override float ScoreConsideration(SoldierController npc)
+        public override float ScoreConsideration(OffenceSoldierController npc)
         {
             var distance = npc.GetKingDistance();
             if(distance > 100)
