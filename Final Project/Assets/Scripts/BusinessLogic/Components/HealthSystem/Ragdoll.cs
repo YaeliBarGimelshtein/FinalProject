@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Ragdoll : MonoBehaviour
 {
     Rigidbody[] rigitBodies;
     Animator animator;
     GameObject canvas;
+    NavMeshAgent agent;
 
     // Start is called before the first frame update
     void Start()
     {
         rigitBodies = GetComponentsInChildren<Rigidbody>();
         animator = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
         canvas = gameObject.transform.GetChild(5).gameObject;
         DeactivateRagdoll();
     }
@@ -34,5 +37,6 @@ public class Ragdoll : MonoBehaviour
         }
         animator.enabled = false;
         canvas.SetActive(false);
+        agent.isStopped = true;
     }
 }

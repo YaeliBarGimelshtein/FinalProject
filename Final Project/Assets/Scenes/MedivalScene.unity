@@ -22598,7 +22598,7 @@ GameObject:
   - component: {fileID: 7078722786946179099}
   m_Layer: 0
   m_Name: mixamorig:RightShoulder
-  m_TagString: Untagged
+  m_TagString: EnemySword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22632,7 +22632,7 @@ GameObject:
   - component: {fileID: 1883678623}
   m_Layer: 0
   m_Name: mixamorig:RightArm
-  m_TagString: Untagged
+  m_TagString: EnemySword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23103,7 +23103,7 @@ GameObject:
   - component: {fileID: 3099756087671357483}
   m_Layer: 0
   m_Name: Paladin_J_Nordstrom
-  m_TagString: Untagged
+  m_TagString: EnemySword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31557,7 +31557,7 @@ GameObject:
   - component: {fileID: 1852576806035203662}
   m_Layer: 0
   m_Name: mixamorig:RightHand
-  m_TagString: Untagged
+  m_TagString: EnemySword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33418,7 +33418,7 @@ GameObject:
   - component: {fileID: 1332946635}
   m_Layer: 0
   m_Name: mixamorig:RightForeArm
-  m_TagString: Untagged
+  m_TagString: EnemySword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthForThirdPersonShooter : MonoBehaviour
 {
-    private Ragdoll ragdoll;
+    private RagdollForThirdPersonShooter ragdoll;
     private SoldierInformation soldierInformation;
     private PlayerInventoryHealth inventoryHealth;
 
@@ -16,7 +16,7 @@ public class HealthForThirdPersonShooter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ragdoll = GetComponent<Ragdoll>();
+        ragdoll = GetComponent<RagdollForThirdPersonShooter>();
         skinnedMeshRenderer = GetComponentsInChildren<SkinnedMeshRenderer>();
         inventoryHealth = GetComponent<PlayerInventoryHealth>();
         soldierInformation = GetComponent<SoldierInformation>();

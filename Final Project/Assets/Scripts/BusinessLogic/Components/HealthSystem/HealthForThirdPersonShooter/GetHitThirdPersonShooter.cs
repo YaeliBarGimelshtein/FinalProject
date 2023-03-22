@@ -8,7 +8,7 @@ public class GetHitThirdPersonShooter : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Sword")
+        if (collision.gameObject.tag == "EnemySword")
         {
             health.TakeDamage(Constants.HitAmount);
         }
