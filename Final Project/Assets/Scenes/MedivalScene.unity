@@ -7340,7 +7340,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 460440825}
-  m_LocalRotation: {x: 0.16036716, y: 0.000000018988336, z: -0.0000000030850345, w: 0.98705745}
+  m_LocalRotation: {x: 0.16036716, y: -0.000000018988336, z: 0.0000000030850345, w: 0.98705745}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7982,7 +7982,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 396, y: -214.79999}
+  m_AnchoredPosition: {x: 396, y: -108.80002}
   m_SizeDelta: {x: 77.2861, y: 55.9528}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &522807212
@@ -12898,59 +12898,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 641cc755a1beef14a89736bed6372987, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &884314010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 785506308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c699c52ed429bf42b54f80f6f2d6310, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnHealthDamage:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 278285989}
-        m_TargetAssemblyTypeName: InventoryUI, Assembly-CSharp
-        m_MethodName: UpdateHealthText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &884314011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 785506308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b78ffa9c337743443b7fe7909135c86d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blinkIntensity: 12
-  blinkDuration: 2
---- !u!114 &884314012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 785506308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f87ca0b4c2f6ddc4b83bdd274c37d0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &895058225
@@ -22379,7 +22326,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 396, y: -165}
+  m_AnchoredPosition: {x: 396, y: -59}
   m_SizeDelta: {x: 77.2861, y: 55.9528}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2137015582
@@ -23156,7 +23103,7 @@ GameObject:
   - component: {fileID: 3099756087671357483}
   m_Layer: 0
   m_Name: Paladin_J_Nordstrom
-  m_TagString: Sword
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33471,7 +33418,7 @@ GameObject:
   - component: {fileID: 1332946635}
   m_Layer: 0
   m_Name: mixamorig:RightForeArm
-  m_TagString: Sword
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
